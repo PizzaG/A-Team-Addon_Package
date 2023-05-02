@@ -1,0 +1,1 @@
+# android_device_motto-common_addon

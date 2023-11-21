@@ -1,0 +1,5 @@
+#
+# Copyright 2019-Present A-Team Digital Solutions
+#
+
+This is a dummy file meant to sit in data/cache and let the A-Team Installer Script know wether it's supposed to run or not.

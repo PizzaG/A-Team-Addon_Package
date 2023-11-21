@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+    <boolean name="sortDescending" value="false" />
+    <boolean name="sortAudioByMetadata" value="false" />
+    <boolean name="viewerImage" value="false" />
+    <string name="imageSortMode">1</string>
+    <string name="itemHeight">130</string>
+    <boolean name="viewerVideo" value="false" />
+    <boolean name="vibrate" value="true" />
+    <boolean name="ask_to_exit" value="true" />
+    <boolean name="show_dir_meta" value="true" />
+    <string name="defaultCharset">UTF-8</string>
+    <string name="language"></string>
+    <string name="sortMode">2</string>
+    <boolean name="rememberLastPath" value="false" />
+    <boolean name="dark_theme" value="true" />
+    <boolean name="showMediaFiles" value="true" />
+    <boolean name="viewerText" value="true" />
+    <boolean name="clipboardToolbar" value="false" />
+    <boolean name="showApkAsZip" value="false" />
+    <string name="use_trash">0</string>
+    <boolean name="viewerAudio" value="false" />
+    <string name="root_access">3</string>
+    <string name="dirSortMode">0</string>
+</map>

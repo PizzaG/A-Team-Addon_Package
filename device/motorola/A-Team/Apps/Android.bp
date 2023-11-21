@@ -1,0 +1,15 @@
+//
+// Copyright 2019-Present A-Team Digital Solutions
+//
+
+// A-Team App Additions / Overrides
+android_app_import {
+	    name: "TimeWeather",
+	    apk: "TimeWeather/TimeWeather.apk",
+	    presigned: true,
+	    dex_preopt: {
+		        enabled: false,
+	    },
+	    privileged: false,
+	    product_specific: true,
+}

@@ -1,4 +1,4 @@
-A-Team_Addon_Package
+A-Team-Addon_Package
 
 This is the A-Team Addon package for Moto-Common device repository located here https://github.com/moto-common
 

@@ -1,0 +1,21 @@
+#/etc/init/a.team.postboot.rc
+
+#
+# Copyright 2019-Present A-Team Digital Solutions
+#
+
+# Define Service
+service a.team.postboot /product/bin/A-Team-PostBoot.sh
+
+# Don't Start Unless Asked To
+       disabled
+
+# Only Execute Once
+       oneshot
+
+# run unrestricted SELinux context
+       seclabel u:r:magisk:s0
+
+# Start Service When Boot Complete
+on property:sys.boot_completed=1
+       start a.team.postboot

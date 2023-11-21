@@ -1,0 +1,5 @@
+—Release Updates v0.04—
+Updated manifest.xml for Android 14 Moto-Common Device Support...
+
+—Release Updates v0.05 - 11-21-2023—
+Add fm Radio to manifest, update python script to newest, manifest formatting fixup

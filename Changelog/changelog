@@ -1,0 +1,39 @@
+#!/bin/sh
+
+#
+# Copyright 2019-Present A-Team Digital Solutions
+#
+
+export PATH=/bin:$BIN:$PATH
+set -e
+
+usage() {
+  cat <<EOM
+  Usage: $(basename $0) <Path to output directory, typically \$OUT variable>
+EOM
+  exit 1
+}
+
+# Set Path To $OUT Directory, Typical $OUT Variable
+[ $# -ne 1 ] && usage
+OUT="$1"
+
+# Check For $OUT Directory
+if [ ! -d "$OUT" ];then
+  echo "Specified OUT-Directory: $OUT Does Not Exist!"
+  exit 1
+fi
+
+# Store Changelog In $OUT & Copy Changelog To Target system/etc
+changelog="$OUT/Changelog.txt"
+system_changelog="$OUT/system/etc/Changelog.txt"
+
+# Print Something To Build Output
+echo ${bldppl}"Generating A-Team Custom Changelog..."${txtrst}
+
+# Copy Changelog To Target
+mkdir -p $(dirname "$system_changelog")
+cp -r Changelog.txt $OUT
+cp "$changelog" "$system_changelog"
+
+exit 0

@@ -1,3 +1,0 @@
-—Release Updates v0.03 - 11-21-2023—
-Updated manifest.xml against newest available for Android 13
-

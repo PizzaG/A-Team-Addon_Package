@@ -3,7 +3,7 @@
 #
 # Copyright 2019-Present A-Team Digital Solutions
 #
-# A-Team Moto-Common Setup Helper Script
+# A-Team Moto-Common Setup Script
 #
 
 # Date
@@ -23,7 +23,7 @@ clear
 echo "A-Team Moto-Common Setup Script"
 echo ""
 echo ""
-echo "Setup Version: 0.03"
+echo "Setup Version: 0.04"
 echo "Setup Update: 11-22-2023"
 echo ""
 echo ""

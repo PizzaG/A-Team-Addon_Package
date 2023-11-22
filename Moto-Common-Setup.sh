@@ -518,10 +518,10 @@ sleep 5
 
 
 ##########################################################################################################
-
+echo ""
 echo "A-Team Moto-Common Setup Complete, Please Enjoy!!"
 echo ""
-sleep 5
+echo ""
 echo "PRESS ENTER TO CONTINUE"
 read
 clear

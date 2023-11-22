@@ -23,7 +23,7 @@ clear
 echo "A-Team Moto-Common Setup Script"
 echo ""
 echo ""
-echo "Setup Version: 0.04"
+echo "Setup Version: 0.05"
 echo "Setup Update: 11-22-2023"
 echo ""
 echo ""
@@ -348,7 +348,7 @@ sed -i '/    ro.sf.lcd_density=280/ a\\ \n# Disable Adaptive Brightness\nPRODUCT
 sleep 5
 
 # Backup & Copy borneo_defconfig File
-echo "Backing Up Original orneo_defconfig In Device Tree..."
+echo "Backing Up Original borneo_defconfig In Device Tree..."
 echo ""
 echo "1/1..."
 echo ""

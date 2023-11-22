@@ -23,7 +23,7 @@ clear
 echo "A-Team Moto-Common Setup Script"
 echo ""
 echo ""
-echo "Setup Version: 0.05"
+echo "Setup Version: 0.06"
 echo "Setup Update: 11-22-2023"
 echo ""
 echo ""
@@ -228,29 +228,13 @@ if [ -f $A_TEAM_PACKAGE_LOCATION/device/$DT_MANUFACTURER/targets/rom/$ROM_BUILD_
    # Copy Rom .mk File
    echo "Copying Rom .mk File To Location..."
    echo ""
-   echo "1/3..."
+   echo "1/2..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/device/$DT_MANUFACTURER/targets/rom/$ROM_BUILD_NAME.mk device/$DT_MANUFACTURER/targets/rom
    sleep 5
    ####################
-   echo "Updating Rom Symlinks..."
-   echo ""
-   echo "2/2..."
-   echo ""
-   sleep 5
-
-   ROM_DIR="device/motorola/targets/rom"
-   DEVICE_DIR="device/motorola/targets/devices"
-
-   for device in $DEVICE_DIR/*; do
-     for file in $ROM_DIR/*; do
-       ln -sf "../../$file" "$device/$(basename ${file%.*})_$(basename $device).mk"
-     done
-   done
-
-   echo "Rom Symlinks Updated & Rom Added  =)"
-   echo ""
-   sleep 5
+   # Update Rom Symlinks
+   ./device/$DT_MANUFACTURER/targets/Update_Rom_Symlinks.sh
    ####################
 else
    echo "Rom .mk File Not Found"
@@ -422,7 +406,7 @@ sed -i 's/PRODUCT_MODEL := moto g stylus 5g 2022/PRODUCT_MODEL := Moto G Stylus 
 sleep 5
 echo "2/2..."
 echo ""
-sed -i '\DEVICE_PATH := device/motorola/milanf/rootdir\ a\\ \n# Disable Adaptive Brightness\nPRODUCT_PACKAGES += milanfSettingsProviderOverlay' device/motorola/milanf/device.mk
+sed -i '/DEVICE_CHARACTERISTICS += hfr/ a\\ \n# Disable Adaptive Brightness\nPRODUCT_PACKAGES += milanfSettingsProviderOverlay' device/motorola/milanf/device.mk
 sleep 5
 
 # Backup & Copy milanf_defconfig File

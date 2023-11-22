@@ -7,6 +7,9 @@
 
 echo "Updating Rom Symlinks..."
 echo ""
+echo "2/2..."
+echo ""
+sleep 5
 
 ROM_DIR="rom"
 DEVICE_DIR="devices"
@@ -23,6 +26,4 @@ done
 
 echo "Rom Symlinks Updated & Rom Added  =)"
 echo ""
-echo ""
-echo "PRESS ENTER TO EXIT"
-read
+sleep 5

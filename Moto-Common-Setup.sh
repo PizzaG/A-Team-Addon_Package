@@ -227,6 +227,7 @@ if [ -f $A_TEAM_PACKAGE_LOCATION/device/$DT_MANUFACTURER/targets/rom/$ROM_BUILD_
    sleep 5
    # Copy Rom .mk File
    echo "Copying Rom .mk File To Location..."
+   echo ""
    echo "1/3..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/device/$DT_MANUFACTURER/targets/rom/$ROM_BUILD_NAME.mk device/$DT_MANUFACTURER/targets/rom

@@ -23,7 +23,7 @@ clear
 echo "A-Team Moto-Common Setup Script"
 echo ""
 echo ""
-echo "Setup Version: 0.07"
+echo "Setup Version: 0.08"
 echo "Setup Update: 11-23-2023"
 echo ""
 echo ""
@@ -234,9 +234,9 @@ if [ -f $A_TEAM_PACKAGE_LOCATION/device/$DT_MANUFACTURER/targets/rom/$ROM_BUILD_
    sleep 5
    ####################
    # Update Moto-Common Device Symlinks
-   cd /device/$DT_MANUFACTURER/targets
+   cd device/$DT_MANUFACTURER/targets
    ./Update_Rom_Symlinks.sh
-   ../../../
+   cd ../../../
    ####################
 else
    echo "Rom .mk File Not Found"

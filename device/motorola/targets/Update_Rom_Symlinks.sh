@@ -5,7 +5,7 @@
 # Copyright 2023 Electimon
 #
 
-echo "Updating Rom Symlinks..."
+echo "Updating Moto-Common Device Symlinks..."
 echo ""
 echo "2/2..."
 echo ""
@@ -24,6 +24,6 @@ for device in $DEVICE_DIR/*; do
   done
 done
 
-echo "Rom Symlinks Updated & Rom Added  =)"
+echo "Rom Symlinks Updated & Rom Added To Moto-Common Devices 😁👍"
 echo ""
 sleep 5

@@ -204,8 +204,4 @@
         remote="moto-common" revision="13" />
     <project path="vendor/sony/timekeep" name="android_vendor_sony_timekeep"
         remote="moto-common" revision="12" />
-
-    <!-- FM Radio -->
-    <project path="vendor/qcom/opensource/commonsys/fm" name="platform_vendor_qcom_opensource_fm-commonsys"
-        remote="moto-common" revision="14" />
 </manifest>

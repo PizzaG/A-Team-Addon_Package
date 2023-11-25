@@ -1,0 +1,32 @@
+—Release Updates v0.01—
+This Script is the "Brains" of the operation and all you need to get going with starting to build moto-common devices. Put this script in the root of your rom folder you want to build, give it rwx permissions and run it.  Initial Publlic Release
+
+—Release Updates v0.02—
+major code overhaul, code cleanup, bug fixes, feature additions, QOL additions
+
+—Release Updates v0.03—
+bug fixes, version bump
+
+—Release Updates v0.04—
+spacing fix #3, version bump
+
+—Release Updates v0.05—
+fix 2 folder directories not spawning in correct location, version bump
+
+—Release Updates v0.06—
+fix syntax error in Build Menu
+
+—Release Updates v0.07—
+properly label Build Menu version
+
+—Release Updates v0.08—
+bugfixes, version bump --> 0.08
+
+—Release Updates v0.09—
+remove setup file after it's been run, version bump --> 0.09
+
+—Release Updates v0.10—
+add variables note to not put A-Team addon folder into your rom folder as it causes build errors, fix a couple typos, reword a couple things, version bump --> 0.10
+
+—Release Updates v0.11—
+fix magisk patching & sanity check of the patched image afterwards.  originally was checking for magisk variable and if found was patching and doing sanity check.  if no variable found, it was skipping patching but still doing a sanity check.  reworked the 2 seperate processes into the same process to fix that, now if variable found will patch and sanity check.  if no variable, will skip patching and also skip sanity check, tweak formatting and layout of running processes a bit to keep it more user readable, rework user versioning system to be in the variables section, version bump --> 0.11

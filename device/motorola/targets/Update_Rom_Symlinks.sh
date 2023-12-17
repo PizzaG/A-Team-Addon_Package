@@ -7,7 +7,7 @@
 
 echo "Updating Moto-Common Device Symlinks..."
 echo ""
-echo "2/2..."
+echo "1/1..."
 echo ""
 sleep 5
 

@@ -65,7 +65,8 @@ removals_keywords = [
     'opensource/thermal',
     'opensource/audio-hal',
     'timekeep',
-    'fm-commonsys'
+    'fm-commonsys',
+    'core-utils-vendor'
 ] + list(replacements_keywords.keys())
 
 # Create the new_root, manifest

@@ -1,0 +1,313 @@
+#!/sbin/sh
+
+#
+# Copyright (C) 2019-Present A-Team Digital Solutions
+#
+# ---------------------------------------------------------#
+#       A-Team Android Custom Installer (c) PizzaG         #
+# ---------------------------------------------------------#
+# For more information and discussion, contact me at:      #
+# https://t.me/Android_General_Chat                        #
+#----------------------------------------------------------#
+
+# Static Variables
+OUTFD=$2
+ZIP=$3
+export INSTALLER="/data/A-Team_Installer"
+KEYCHECK="$INSTALLER/A-Team/keycheck"
+SLOT=`getprop ro.boot.slot_suffix`
+
+# Permissions
+umask 022
+
+# Print Function
+ui_print() {
+  echo -n -e "ui_print $1\n" > /proc/self/fd/$OUTFD
+  echo -n -e "ui_print\n" > /proc/self/fd/$OUTFD
+}
+
+# Volume Key Function
+customkey() {
+  # Calling First Time Detects Previous Input. Calling Second Time Will Do What We Want
+  $KEYCHECK
+  $KEYCHECK
+  SEL=$?
+  if [ "$1" == "UP" ]; then
+    UP=$SEL
+  elif [ "$1" == "DOWN" ]; then
+    DOWN=$SEL
+  elif [ $SEL -eq $UP ]; then
+    return 0
+  elif [ $SEL -eq $DOWN ]; then
+    return 1
+  else
+    ui_print "   Vol Key Not Detected!"
+    abort "   Use Name Change Method In TWRP"
+  fi
+}
+
+##### THE PARTY STARTS HERE ########
+
+# Format Data & MetaData
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print "Formatting Data & MetaData..."
+umount /dev/block/bootdevice/by-name/userdata
+umount /data
+sleep 5
+make_f2fs -g android -O project_quota,extra_attr -O casefold -C utf8 /dev/block/bootdevice/by-name/userdata 59429367
+sload_f2fs -t /data /dev/block/bootdevice/by-name/userdata
+mke2fs -t ext4 -b 4096 /dev/block/bootdevice/by-name/metadata 4096
+e2fsdroid -e -S /file_contexts -a /metadata /dev/block/bootdevice/by-name/metadata
+mount -o rw /data
+
+# Initial Cleanup
+rm -rf $INSTALLER 2>/dev/null
+mkdir -p $INSTALLER
+
+# Extract Files
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print "Extracting Installation Files..."
+ui_print " "
+ui_print " "
+cd $INSTALLER
+unzip -o "$ZIP"
+chmod 777 $KEYCHECK
+
+ui_print " "
+ui_print " "
+ui_print " #########################################"
+ui_print " #                                       #"
+ui_print " #        A-Team Custom Installer        #"
+ui_print " #                                       #"
+ui_print " #########################################"
+ui_print " #                                       #"
+ui_print " #      v0.01 (c) PizzaG  1-8-2022       #"
+ui_print " #      v0.02 (c) PizzaG  3-1-2023       #"
+ui_print " #      v0.03 (c) PizzaG  3-8-2023       #"
+ui_print " #      v0.04 (c) PizzaG  3-14-2023      #"
+ui_print " #      v0.05 (c) PizzaG  11-19-2023     #"
+ui_print " #      v0.06 (c) PizzaG  11-29-2023     #"
+ui_print " #      v0.07 (c) PizzaG  12-10-2023     #"
+ui_print " #                                       #"
+ui_print " #########################################"
+ui_print " "
+ui_print " "
+ui_print " "
+sleep 5
+
+# Program Volume Keys
+FUNCTION=customkey
+ui_print " "
+ui_print " - Vol Key Programming -"
+ui_print "   Press Vol Down..."
+$FUNCTION "UP"
+ui_print "   Press Vol Up..."
+$FUNCTION "DOWN"
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+
+ui_print "Current Flashing Slot = Slot$SLOT "
+
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+
+# Option 1- Recovery
+ui_print "Would You Like OrangeFox Or TWRP Recovery ?"
+ui_print "   Vol UP = OrangeFox "
+ui_print "   Vol DN = TWRP "
+if ! $FUNCTION ; then
+  clear
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "OrangeFox Custom Recovery Selected..."
+  export OFRP=TRUE
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "Installer Will Continue In 5 Seconds...."
+  sleep 5
+else
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "TWRP Custom Recovery Selected..."
+  export OFRP=FALSE
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  sleep 5
+  ui_print "Installer Will Continue In 5 Seconds...."
+  sleep 5
+fi
+
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+
+# Option 2- Encryption
+ui_print "Would You Like To Disable Encryption ?"
+ui_print "   Vol UP = YES  "
+ui_print "   Vol DN = NO "
+if ! $FUNCTION ; then
+  clear
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "Disable Encryption Selected..."
+  export CRYPTO=FALSE
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  sleep 5
+  ui_print "Installer Will Continue In 5 Seconds...."
+  sleep 5
+else
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "Disable Encryption Skipped..."
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  sleep 5
+  ui_print "Installer Will Continue In 5 Seconds...."
+  sleep 5
+fi
+
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+
+# Recovery Flashing
+if [[ $OFRP == TRUE ]]
+then
+# Flash OrangeFox
+ui_print "Flashing OrangeFox..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/OFRP.img of=/dev/block/by-name/boot$SLOT
+fi
+if [[ $OFRP == FALSE ]]
+then
+# Flash TWRP
+ui_print "Flashing TWRP..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/TWRP.img of=/dev/block/by-name/boot$SLOT
+fi
+
+# Dtbo
+ui_print "Flashing Dtbo..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/dtbo.img of=/dev/block/by-name/dtbo$SLOT
+
+# Super
+ui_print "Flashing Super..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+umount /dev/block/mapper/product$SLOT
+umount /dev/block/mapper/system_ext$SLOT
+umount /dev/block/mapper/vendor$SLOT
+umount /dev/block/mapper/system$SLOT
+dd if=$INSTALLER/A-Team/super.raw.img of=/dev/block/by-name/super
+
+# Vbmeta
+ui_print "Flashing Vbmeta..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/vbmeta.img of=/dev/block/by-name/vbmeta$SLOT
+
+# Vbmeta_System
+ui_print "Flashing Vbmeta_System..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/vbmeta_system.img of=/dev/block/by-name/vbmeta_system$SLOT
+
+# Vendor_Boot
+ui_print "Flashing Vendor_Boot..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/vendor_boot.img of=/dev/block/by-name/vendor_boot$SLOT
+
+# Encryption
+if [[ $CRYPTO == FALSE ]]
+then
+ui_print "Rebuilding Super RW & Disabling Encryption..."
+ui_print " "
+mkdir /data/local
+mkdir /data/local/tmp
+cp -r $INSTALLER/A-Team/systemrw_1.32-NoEncrypt /data/local/tmp/systemrw_1.32
+chmod +x /data/local/tmp/systemrw_1.32/systemrw.sh
+# run it
+size=0
+sh -c /data/local/tmp/systemrw_1.32/systemrw.sh '$size'
+else
+# Rebuild Super RW & Auto Disable Encrypt
+ui_print "Rebuilding Super RW..."
+ui_print " "
+mkdir /data/local
+mkdir /data/local/tmp
+cp -r $INSTALLER/A-Team/systemrw_1.32-Encrypt /data/local/tmp/systemrw_1.32
+chmod +x /data/local/tmp/systemrw_1.32/systemrw.sh
+# run it
+size=0
+sh -c /data/local/tmp/systemrw_1.32/systemrw.sh '$size'
+fi
+
+# Format Data
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print "Formatting Data & MetaData..."
+umount /dev/block/bootdevice/by-name/userdata
+umount /data
+sleep 5
+make_f2fs -g android -O project_quota,extra_attr -O casefold -C utf8 /dev/block/bootdevice/by-name/userdata 59429367
+sload_f2fs -t /data /dev/block/bootdevice/by-name/userdata
+mke2fs -t ext4 -b 4096 /dev/block/bootdevice/by-name/metadata 4096
+e2fsdroid -e -S /file_contexts -a /metadata /dev/block/bootdevice/by-name/metadata
+mount -o rw /data
+sleep 5
+# TEST
+#umount /dev/block/bootdevice/by-name/userdata
+#umount /data
+#make_f2fs -g android -O project_quota,extra_attr -O casefold -C utf8 /dev/block/bootdevice/by-name/userdata 59429367
+
+# Finalization
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print "Installation Complete"
+ui_print " "
+ui_print " "
+sleep 3
+ui_print "Installer Will Exit & Device Will Reboot In 15 Seconds..."
+ui_print " "
+ui_print " "
+sleep 3
+ui_print "=)=) PLEASE ENJOY THIS RELEASE =)=)"
+sleep 15
+reboot

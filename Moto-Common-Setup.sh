@@ -13,6 +13,7 @@ date=$(date -u +%m%d%Y)
 echo -ne "\033]0;$(basename $(dirname ${PWD}))\007"
 
 # Copyright & Current Date Stamp
+echo ""
 echo "Copyright 2019-Present A-Team Digital Solutions"
 echo "                $date"
 echo "" 
@@ -20,11 +21,12 @@ sleep 10
 clear
 
 # Software Info
+echo ""
 echo "A-Team Moto-Common Setup Script"
 echo ""
 echo ""
-echo "Setup Version: 0.08"
-echo "Setup Update: 11-23-2023"
+echo "Setup Version: 0.09"
+echo "Setup Update: 11-29-2023"
 echo ""
 echo ""
 echo "Current Date: $date"
@@ -228,7 +230,7 @@ if [ -f $A_TEAM_PACKAGE_LOCATION/device/$DT_MANUFACTURER/targets/rom/$ROM_BUILD_
    # Copy Rom .mk File
    echo "Copying Rom .mk File To Location..."
    echo ""
-   echo "1/2..."
+   echo "1/1..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/device/$DT_MANUFACTURER/targets/rom/$ROM_BUILD_NAME.mk device/$DT_MANUFACTURER/targets/rom
    sleep 5
@@ -511,4 +513,5 @@ echo ""
 echo "PRESS ENTER TO CONTINUE"
 read
 clear
+rm -rf Moto-Common-Setup.sh
 ./Moto-Common-Build.sh

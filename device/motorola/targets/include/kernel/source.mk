@@ -3,6 +3,8 @@
 # (C) 2023 Electimon
 #
 
+include device/motorola/targets/include/kernel/common.mk
+
 # A-Team Clang Version Selector
 ifeq ($(call is-kernel-greater-than-or-equal-to, 5.4),true)
     TARGET_KERNEL_LLVM_BINUTILS := true
@@ -19,19 +21,29 @@ else
     TARGET_KERNEL_LLVM_BINUTILS := false
 endif
 
+TARGET_KERNEL_NO_GCC := false
+TARGET_KERNEL_CONFIG := vendor/$(DEVICE)_defconfig
+
 # A-Team Kernel Auto Selector
-ifeq ($(DEVICE_NAME), Borneo)
-    TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)-borneo
-    TARGET_KERNEL_CONFIG := vendor/$(DEVICE)_defconfig
-    PRODUCT_SOONG_NAMESPACES += \
-        [$(DEVICE_NAME)_$(TARGET_KERNEL_VERSION)_Kernel]
+ifeq ($(PRODUCT_USES_QCOM_HARDWARE),true)
+  ifeq ($(DEVICE_NAME), Borneo)
+      TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)-borneo
+      PRODUCT_SOONG_NAMESPACES += \
+          [$(DEVICE_NAME)_$(TARGET_KERNEL_VERSION)_Kernel]
+  else
+      TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)
+      PRODUCT_SOONG_NAMESPACES += \
+          [$(DEVICE_NAME)_$(TARGET_KERNEL_VERSION)_Kernel]
+  endif
+else ifeq ($(PRODUCT_USES_MTK_HARDWARE),true)
+  ifneq ($(TARGET_USES_DTB_FROM_SOURCE),true)
+    BOARD_PREBUILT_DTBIMAGE_DIR ?= device/motorola/$(PRODUCT_DEVICE)-kernel/dtbs
+  endif
+  ifeq ($(call has-partition,dtbo),true)
+    # Mtk moto devices must use prebuilt dtbo image
+    BOARD_PREBUILT_DTBOIMAGE ?= device/motorola/$(PRODUCT_DEVICE)-kernel/dtbo.img
+  endif
+  TARGET_KERNEL_SOURCE := kernel/motorola/$(TARGET_BOARD_PLATFORM)
 else
-    TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)
-    TARGET_KERNEL_CONFIG := vendor/$(DEVICE)_defconfig
-    PRODUCT_SOONG_NAMESPACES += \
-        [$(DEVICE_NAME)_$(TARGET_KERNEL_VERSION)_Kernel]
+  $(warning Target's Hardware Is Not Supported...)
 endif
-
-
-
-

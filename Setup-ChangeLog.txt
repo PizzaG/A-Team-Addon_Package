@@ -1,4 +1,4 @@
-—Release Updates Version 0.01 - 0.04 not tracked—
+—Release Updates Version 0.01 - 0.03 not tracked—
 
 —Release Updates v0.04—
 Updated manifest.xml for Android 14 Moto-Common Device Support...
@@ -14,3 +14,6 @@ fix moto-common device symlinks updating as it was causing device to not be pick
 
 —Release Updates v0.08—
 3rd attempt --> fix moto-common device symlinks updating as it was causing device to not be picked up by build system
+
+—Release Updates v0.09—
+fix 2 typos, tweak spacing, setup script deletes itself after running...

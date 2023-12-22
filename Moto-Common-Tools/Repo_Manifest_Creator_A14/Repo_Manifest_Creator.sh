@@ -47,7 +47,7 @@ mkdir A-Team/local_manifests
 cp -r A-Team/moto-common.xml A-Team/local_manifests
 
 # Manifest Build Command
-python3 A-Team/RMC.py A-Team/manifests/default.xml A-Team/manifests/bliss.xml A-Team/manifests/los.xml A-Team/manifests/pixel.xml A-Team/manifests/remove.xml A-Team/local_manifests/moto-common.xml A-Team/local_manifests/a-derpfest_14.xml
+python3 A-Team/RMC.py A-Team/manifests/default.xml A-Team/manifests/snippets/crdroid.xml A-Team/manifests/snippets/lineage.xml A-Team/manifests/snippets/matrixx.xml A-Team/manifests/snippets/pixel.xml A-Team/local_manifests/moto-common.xml A-Team/local_manifests/a-matrixx_14.xml
 
 # Move local_manifest Folder
 mv A-Team/local_manifests local_manifests

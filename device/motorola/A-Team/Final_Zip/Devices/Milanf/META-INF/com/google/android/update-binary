@@ -7,7 +7,7 @@
 #       A-Team Android Custom Installer (c) PizzaG         #
 # ---------------------------------------------------------#
 # For more information and discussion, contact me at:      #
-# https://t.me/Android_General_Chat                        #
+# https://t.me/A_Team_Digital_Solutions                    #
 #----------------------------------------------------------#
 
 # Static Variables
@@ -94,6 +94,7 @@ ui_print " #      v0.04 (c) PizzaG  3-14-2023      #"
 ui_print " #      v0.05 (c) PizzaG  11-19-2023     #"
 ui_print " #      v0.06 (c) PizzaG  11-29-2023     #"
 ui_print " #      v0.07 (c) PizzaG  12-10-2023     #"
+ui_print " #      v0.08 (c) PizzaG  12-22-2023     #"
 ui_print " #                                       #"
 ui_print " #########################################"
 ui_print " "
@@ -224,14 +225,11 @@ SLOT=`getprop ro.boot.slot_suffix`
 dd if=$INSTALLER/A-Team/dtbo.img of=/dev/block/by-name/dtbo$SLOT
 
 # Super
-ui_print "Flashing Super..."
-ui_print " "
 SLOT=`getprop ro.boot.slot_suffix`
 umount /dev/block/mapper/product$SLOT
 umount /dev/block/mapper/system_ext$SLOT
 umount /dev/block/mapper/vendor$SLOT
 umount /dev/block/mapper/system$SLOT
-dd if=$INSTALLER/A-Team/super.raw.img of=/dev/block/by-name/super
 
 # Vbmeta
 ui_print "Flashing Vbmeta..."
@@ -254,24 +252,30 @@ dd if=$INSTALLER/A-Team/vendor_boot.img of=/dev/block/by-name/vendor_boot$SLOT
 # Encryption
 if [[ $CRYPTO == FALSE ]]
 then
+ui_print " "
+ui_print " "
+ui_print " "
 ui_print "Rebuilding Super RW & Disabling Encryption..."
 ui_print " "
 mkdir /data/local
 mkdir /data/local/tmp
 cp -r $INSTALLER/A-Team/systemrw_1.32-NoEncrypt /data/local/tmp/systemrw_1.32
 chmod +x /data/local/tmp/systemrw_1.32/systemrw.sh
-# run it
+# Run RW Script
 size=0
 sh -c /data/local/tmp/systemrw_1.32/systemrw.sh '$size'
 else
 # Rebuild Super RW & Auto Disable Encrypt
+ui_print " "
+ui_print " "
+ui_print " "
 ui_print "Rebuilding Super RW..."
 ui_print " "
 mkdir /data/local
 mkdir /data/local/tmp
 cp -r $INSTALLER/A-Team/systemrw_1.32-Encrypt /data/local/tmp/systemrw_1.32
 chmod +x /data/local/tmp/systemrw_1.32/systemrw.sh
-# run it
+# Run RW Script
 size=0
 sh -c /data/local/tmp/systemrw_1.32/systemrw.sh '$size'
 fi
@@ -290,10 +294,6 @@ mke2fs -t ext4 -b 4096 /dev/block/bootdevice/by-name/metadata 4096
 e2fsdroid -e -S /file_contexts -a /metadata /dev/block/bootdevice/by-name/metadata
 mount -o rw /data
 sleep 5
-# TEST
-#umount /dev/block/bootdevice/by-name/userdata
-#umount /data
-#make_f2fs -g android -O project_quota,extra_attr -O casefold -C utf8 /dev/block/bootdevice/by-name/userdata 59429367
 
 # Finalization
 ui_print " "
@@ -303,8 +303,10 @@ ui_print " "
 ui_print "Installation Complete"
 ui_print " "
 ui_print " "
+ui_print " "
 sleep 3
 ui_print "Installer Will Exit & Device Will Reboot In 15 Seconds..."
+ui_print " "
 ui_print " "
 ui_print " "
 sleep 3

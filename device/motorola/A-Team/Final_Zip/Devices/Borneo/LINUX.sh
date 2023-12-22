@@ -54,32 +54,6 @@ read
 
 clear
 
-# Recovery Menu
-echo ""
-echo "========= Recovery Selection ========"
-echo "-------------------------------------"
-echo "1 => OrangeFox                      -"
-echo "2 => TWRP                           -"
-echo "-------------------------------------"
-echo "Select Your Option & PRESS ENTER    -"
-echo "-------------------------------------"
-read recovery
-
-# Option 1- OFRP
-if [[ $recovery == 1 ]]
-then
-clear
-OFRP=TRUE
-RECOVERY=OrangeFox
-
-# Option 2 - TWRP
-elif [[ $recovery == 2 ]]
-then
-clear
-RECOVERY=TWRP
-fi
-############################
-
 # Encryption Menu
 echo ""
 echo "======== Encryption Selection ======="
@@ -96,9 +70,6 @@ if [[ $crypto == 1 ]]
 then
 clear
 echo ""
-echo "Recovery Selected => $RECOVERY"
-echo ""  
-echo ""  
 echo "Encryption => Enabled"
 echo ""  
 echo "" 
@@ -109,9 +80,6 @@ elif [[ $crypto == 2 ]]
 then
 clear
 echo "" 
-echo "Recovery Selected => $RECOVERY"
-echo ""  
-echo ""   
 echo "Encryption => Disabled"
 echo ""  
 echo "" 
@@ -120,37 +88,12 @@ sleep 7
 fi
 ############################
 
-# Flash Recovery Choice
-if [[ $OFRP == TRUE ]]
-then
-# Flash OrangeFox
-echo "Flashing OrangeFox Boot..."
+# Flash Boot
+echo "Flashing Boot..."
 echo ""
-fastboot flash boot OFRP.img
+fastboot flash boot Magisk.img
 echo ""
 echo ""
-else
-# Flash TWRP
-echo "Flashing TWRP Boot..."
-echo ""
-fastboot flash boot TWRP.img
-echo ""
-echo ""
-fi
-
-# Flash Vbmeta
-echo "Flashing Vbmeta..."
-echo ""
-fastboot flash --disable-verity --disable-verification vbmeta vbmeta.img
-echo ""
-echo "" 
-
-# Flash Vbmeta_System
-echo "Flashing Vbmeta_System..."
-echo ""
-fastboot flash --disable-verity --disable-verification vbmeta_system vbmeta_system.img
-echo ""
-echo "" 
 
 # Flash Dtbo
 echo "Flashing Dtbo..."
@@ -159,10 +102,24 @@ fastboot flash dtbo dtbo.img
 echo ""
 echo "" 
 
-# Flash Vendor_Boot
-echo "Flashing Vendor_Boot..."
+# Flash Recovery
+echo "Flashing Recovery..."
 echo ""
-fastboot flash vendor_boot vendor_boot.img
+fastboot flash recovery recovery.img
+echo ""
+echo "" 
+
+# Flash Vbmeta
+echo "Flashing Vbmeta..."
+echo ""
+fastboot flash --disable-verity --disable-verification vbmeta vbmeta.img
+echo ""
+echo ""  
+
+# Flash Vbmeta_System
+echo "Flashing Vbmeta_System..."
+echo ""
+fastboot flash --disable-verity --disable-verification vbmeta_system vbmeta_system.img
 echo ""
 echo "" 
 
@@ -184,11 +141,9 @@ echo "Deleting Logical Super Partitions..."
 echo ""
 fastboot delete-logical-partition product_a
 fastboot delete-logical-partition system_a
-fastboot delete-logical-partition system_ext_a
 fastboot delete-logical-partition vendor_a
 fastboot delete-logical-partition product_b
 fastboot delete-logical-partition system_b
-fastboot delete-logical-partition system_ext_b
 fastboot delete-logical-partition vendor_b
 echo ""
 echo ""
@@ -198,7 +153,6 @@ echo "Creating New Logical Super Partitions..."
 echo ""
 fastboot create-logical-partition product_a 2500314624
 fastboot create-logical-partition system_a 2500314624
-fastboot create-logical-partition system_ext_a 2500314624
 fastboot create-logical-partition vendor_a 975491072
 echo ""
 echo ""
@@ -214,13 +168,6 @@ echo ""
 echo "Flashing System..."
 echo ""
 fastboot flash system_a system_a.img
-echo ""
-echo ""
-
-# Flash System_Ext
-echo "Flashing System_Ext..."
-echo ""
-fastboot flash system_ext_a system_ext_a.img
 echo ""
 echo ""
 

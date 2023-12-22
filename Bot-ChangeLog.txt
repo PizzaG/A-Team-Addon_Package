@@ -1,0 +1,6 @@
+—Release Updates v0.01—
+Initial Bot Release...
+
+—Release Updates v0.02—
+Add Bot ability to spawn messages to Telegram group subchannels(Topics)...
+

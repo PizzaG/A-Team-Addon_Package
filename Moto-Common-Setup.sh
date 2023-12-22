@@ -25,8 +25,8 @@ echo ""
 echo "A-Team Moto-Common Setup Script"
 echo ""
 echo ""
-echo "Setup Version: 0.09"
-echo "Setup Update: 11-29-2023"
+echo "Setup Version: 0.10"
+echo "Setup Update: 12-21-2023"
 echo ""
 echo ""
 echo "Current Date: $date"
@@ -105,6 +105,50 @@ elif [ -f vendor/$ROM_BUILD_NAME/tools/changelog.sh ]; then
    echo "1/1..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/changelog.sh vendor/$ROM_BUILD_NAME/tools
+   sleep 5
+   # Copy Changelog Template Files
+   echo "Copying Device Specific Changelog Templates..."
+   echo ""
+   echo "1/6..."
+   echo ""
+   cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Amogus Changelog.txt.Amogus
+   sleep 5
+   echo "2/6..."
+   echo ""
+   cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Borneo Changelog.txt.Borneo
+   sleep 5
+   echo "3/6..."
+   echo ""
+   cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Guamna Changelog.txt.Guamna
+   sleep 5
+   echo "4/6..."
+   echo ""
+   cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Milanf Changelog.txt.Milanf
+   sleep 5
+   echo "5/6..."
+   echo ""
+   cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Osaka Changelog.txt.Osaka
+   sleep 5
+   echo "6/6..."
+   echo ""
+   cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Rhodep Changelog.txt.Rhodep
+   sleep 5
+elif [ -f vendor/$ROM_BUILD_NAME/build/tools/changelog.sh ]; then
+   echo "Rom changelog.sh Found, Hijacking For Custom Changelog Ability..."
+   echo ""
+   # Backup Original
+   echo "Backing Up Original changelog.sh..."
+   echo ""
+   echo "1/1..."
+   echo ""
+   mv vendor/$ROM_BUILD_NAME/build/tools/changelog.sh vendor/$ROM_BUILD_NAME/build/tools/changelog.sh.bak
+   sleep 5
+   # Copy Modded
+   echo "Copying Modified changelog.sh..."
+   echo ""
+   echo "1/1..."
+   echo ""
+   cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/changelog.sh vendor/$ROM_BUILD_NAME/build/tools
    sleep 5
    # Copy Changelog Template Files
    echo "Copying Device Specific Changelog Templates..."

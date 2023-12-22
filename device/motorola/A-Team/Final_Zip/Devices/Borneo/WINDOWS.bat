@@ -50,27 +50,6 @@ set /p input=
 cls
 
 echo:
-echo ========= Recovery Selection ========
-echo -------------------------------------
-echo 1 ^=^> OrangeFox                      -
-echo 2 ^=^> TWRP                           -
-echo -------------------------------------
-echo Select Your Option ^& PRESS ENTER    -
-echo -------------------------------------
-set /p recovery=
-
-IF  %recovery% == 1  (
-  cls
-  set OFRP=TRUE
-  set RECOVERY=OrangeFox
-) ELSE (
-  IF  %recovery% == 2  (
-    cls
-    set RECOVERY=TWRP
-  )
-)
-
-echo:
 echo ======== Encryption Selection =======
 echo -------------------------------------
 echo 1 ^=^> Keep Encryption                -
@@ -83,9 +62,6 @@ set /p crypto=
 IF  %crypto% == 1  (
   cls
   echo: 
-  echo Recovery Selected ^=^> %RECOVERY%
-  echo: 
-  echo: 
   echo Encryption ^=^> Enabled
   echo: 
   echo: 
@@ -93,9 +69,6 @@ IF  %crypto% == 1  (
 ) ELSE (
   IF  %crypto% == 2  (
     cls
-    echo: 
-    echo Recovery Selected ^=^> %RECOVERY%
-    echo: 
     echo: 
     echo Encryption ^=^> Disabled
     echo: 
@@ -105,20 +78,23 @@ IF  %crypto% == 1  (
   )
 )
 
-IF  %OFRP% == TRUE  (
-  echo Flashing OrangeFox Boot...
-  echo: 
-  fastboot flash boot OFRP.img
-  echo: 
-  echo: 
-) ELSE (
-    echo Flashing TWRP Boot...
-    echo: 
-    fastboot flash boot TWRP.img
-    echo: 
-    echo:
-  )	
-)
+echo Flashing Boot...
+echo: 
+fastboot flash boot Magisk.img
+echo: 
+echo:
+
+echo Flashing Dtbo...
+echo: 
+fastboot flash dtbo dtbo.img
+echo: 
+echo: 
+
+echo Flashing Recovery...
+echo: 
+fastboot flash recovery recovery.img
+echo: 
+echo: 
 
 echo Flashing Vbmeta...
 echo: 
@@ -129,18 +105,6 @@ echo:
 echo Flashing Vbmeta_System...
 echo: 
 fastboot flash --disable-verity --disable-verification vbmeta_system vbmeta_system.img
-echo: 
-echo: 
-
-echo Flashing Dtbo...
-echo: 
-fastboot flash dtbo dtbo.img
-echo: 
-echo: 
-
-echo Flashing Vendor_Boot...
-echo: 
-fastboot flash vendor_boot vendor_boot.img
 echo: 
 echo: 
 
@@ -159,11 +123,9 @@ echo Deleting Logical Super Partitions...
 echo: 
 fastboot delete-logical-partition product_a
 fastboot delete-logical-partition system_a
-fastboot delete-logical-partition system_ext_a
 fastboot delete-logical-partition vendor_a
 fastboot delete-logical-partition product_b
 fastboot delete-logical-partition system_b
-fastboot delete-logical-partition system_ext_b
 fastboot delete-logical-partition vendor_b
 echo: 
 echo:
@@ -172,7 +134,6 @@ echo Creating New Logical Super Partitions...
 echo: 
 fastboot create-logical-partition product_a 2500314624
 fastboot create-logical-partition system_a 2500314624
-fastboot create-logical-partition system_ext_a 2500314624
 fastboot create-logical-partition vendor_a 975491072
 echo: 
 echo:
@@ -186,12 +147,6 @@ echo ""
 echo Flashing System...
 echo: 
 fastboot flash system_a system.img
-echo ""
-echo ""
-
-echo Flashing System_Ext...
-echo: 
-fastboot flash system_ext_a system_ext.img
 echo ""
 echo ""
 

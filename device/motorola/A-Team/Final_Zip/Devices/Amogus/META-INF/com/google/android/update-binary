@@ -173,10 +173,15 @@ ui_print " "
 SLOT=`getprop ro.boot.slot_suffix`
 dd if=$INSTALLER/A-Team/dtbo.img of=/dev/block/by-name/dtbo$SLOT
 
+# Recovery
+ui_print "Flashing Recovery..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/recovery.img of=/dev/block/by-name/recovery$SLOT
+
 # Super
 SLOT=`getprop ro.boot.slot_suffix`
 umount /dev/block/mapper/product$SLOT
-umount /dev/block/mapper/system_ext$SLOT
 umount /dev/block/mapper/vendor$SLOT
 umount /dev/block/mapper/system$SLOT
 
@@ -185,18 +190,6 @@ ui_print "Flashing Vbmeta..."
 ui_print " "
 SLOT=`getprop ro.boot.slot_suffix`
 dd if=$INSTALLER/A-Team/vbmeta.img of=/dev/block/by-name/vbmeta$SLOT
-
-# Vbmeta_System
-ui_print "Flashing Vbmeta_System..."
-ui_print " "
-SLOT=`getprop ro.boot.slot_suffix`
-dd if=$INSTALLER/A-Team/vbmeta_system.img of=/dev/block/by-name/vbmeta_system$SLOT
-
-# Vendor_Boot
-ui_print "Flashing Vendor_Boot..."
-ui_print " "
-SLOT=`getprop ro.boot.slot_suffix`
-dd if=$INSTALLER/A-Team/vendor_boot.img of=/dev/block/by-name/vendor_boot$SLOT
 
 # Encryption
 if [[ $CRYPTO == FALSE ]]

@@ -8,7 +8,8 @@ logDir="$LOC/log";pDumpDir="$LOC/nosuper";sDumpDir="$LOC/img"
 printf " ---------------------------------------------------\n"
 printf "|    SystemRW v%s Automated Script By: Lebigmac   |\n" $version
 printf "|              Modified By: PizzaG                  |\n"
-printf "|             A-Team Version: 0.03                  |\n"
+printf "|             A-Team Version: 0.04                  |\n"
+printf "|           Version Date: 12-22-2023                |\n"
 printf " ---------------------------------------------------\n\n"
 
 echoUsage(){
@@ -61,7 +62,6 @@ if [[ ! -z $@ ]]; then
 fi
 
 getCurrentSize(){
-    #currentSize=$($toy stat -c "%s" $1)
     currentSize=$(wc -c < $1)
     currentSizeMB=$(echo $currentSize | awk '{print int($1 / 1024 / 1024)}')
     currentSizeBlocks=$(echo $currentSize | awk '{print int($1 / 512)}')
@@ -109,7 +109,6 @@ unshareBlocks(){
     else
         printf "$app: Read-Only Lock Of %s Successfully Removed\n\n" $fiName
     fi
-    #shrink2Min $1
 }
 
 makeRW(){
@@ -140,14 +139,6 @@ flash(){
 success(){
     printf "$app: Congratulations! You Should Now Have R/W Capability\n"
     cleanUp "$sDumpDir/*.img"
-    #if ( isRecovery ); then
-        #printf "$app: Deleting $sDumpDir/super_fixed.bin To Free Up Some Space\n\n"
-        #mv "$sDumpDir/super_fixed.bin /sdcard/super.img"
-        #printf "$app: Rebooting Device...\n\n"
-        #adb reboot
-    #else
-        #printf "$app: Please Reboot Into Bootloader & Flash Manually\n\n"
-    #fi
     exit 0
 }
 
@@ -189,7 +180,6 @@ makeSuper(){
         fName="$sDumpDir/$imgName.img"
         if [[ "$imgName" == *"system"* || "$imgName" == *"product"* || "$imgName" == *"vendor"* ]]; then makeRW $fName; fi
         getCurrentSize $fName 1
-        #if [ -z "$cow" ]; then xSize=$currentSize; else xSize=0; fi
         if [[ "$currentSize" > 0 && "$groupName" != *"cow"* ]]; then
             echo -n "--partition $imgName:none:$currentSize:$groupName ">>$myArgsPath
             echo -n "--image $imgName=$fName ">>$myArgsPath
@@ -198,8 +188,8 @@ makeSuper(){
     echo -n "--output $superFixedPath">>$myArgsPath
     printf "$app: Joining All Extracted Images Back Into One Single Super Image...\n$app: Please Wait & Ignore The Invalid Sparse Warnings...\n\n"
     myArgs=$(cat "$logDir/myargs.txt")
+    cp -r $INSTALLER/A-Team/myargs.txt $logDir/myargs.txt
     if ( ./tools/lpmake $myArgs 2>&1 ); then
-        rm -f $myArgsPath
         printf "\n$app: Successfully Created Patched Super Image @\n$app: %s\n\n" `realpath $superFixedPath`
         if ( isRecovery ); then flash $superFixedPath $superPath; fi
         success
@@ -221,6 +211,11 @@ lpUnpack(){
         else
             printf "$app: Nested Partitions Were Successfully Extracted From Super\n\n"
             #e2fsck -fy /data/local/tmp/systemrw_1.32/img/system_a.img
+            SLOT=`getprop ro.boot.slot_suffix`
+            cp -r $INSTALLER/A-Team/product.img /data/local/tmp/systemrw_1.32/img/product$SLOT.img
+            cp -r $INSTALLER/A-Team/system.img /data/local/tmp/systemrw_1.32/img/system$SLOT.img
+            cp -r $INSTALLER/A-Team/system_ext.img /data/local/tmp/systemrw_1.32/img/system_ext$SLOT.img
+            cp -r $INSTALLER/A-Team/vendor.img /data/local/tmp/systemrw_1.32/img/vendor$SLOT.img
             makeSuper
         fi
     else
@@ -369,11 +364,9 @@ sdkCheck(){
 }
 
 checkDeviceState(){
-    #toy="./tools/toybox"
     if [ `whoami` != "root" ]; then printf "$app: No Root Detected. Please Try Again As Root. Aborting..\n\n"; exit 1; fi
     if ( which twrp>/dev/null ); then printf "$app: Device Is In Custom Recovery Mode\n"; else printf "$app: Device Is In Android Mode\n"; notwrp=1; fi
     getDeviceName
-    #sdkCheck
     setenforce 0; printf "$app: Current SELinux Status: %s\n" `getenforce`
     getCurrentSlot
     checkRW

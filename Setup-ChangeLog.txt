@@ -17,3 +17,6 @@ fix moto-common device symlinks updating as it was causing device to not be pick
 
 —Release Updates v0.09—
 fix 2 typos, tweak spacing, setup script deletes itself after running...
+
+—Release Updates v0.10—
+add 3rd changelog location option that we hijack for custom changelogs...

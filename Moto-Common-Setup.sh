@@ -65,29 +65,25 @@ if [ -f vendor/$ROM_BUILD_NAME/tools/changelog ]; then
    # Copy Changelog Template Files
    echo "Copying Device Specific Changelog Templates..."
    echo ""
-   echo "1/6..."
+   echo "1/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Amogus Changelog.txt.Amogus
    sleep 5
-   echo "2/6..."
+   echo "2/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Borneo Changelog.txt.Borneo
    sleep 5
-   echo "3/6..."
+   echo "3/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Guamna Changelog.txt.Guamna
    sleep 5
-   echo "4/6..."
+   echo "4/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Milanf Changelog.txt.Milanf
    sleep 5
-   echo "5/6..."
+   echo "5/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Osaka Changelog.txt.Osaka
-   sleep 5
-   echo "6/6..."
-   echo ""
-   cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Rhodep Changelog.txt.Rhodep
    sleep 5
 elif [ -f vendor/$ROM_BUILD_NAME/tools/changelog.sh ]; then
    echo "Rom changelog.sh Found, Hijacking For Custom Changelog Ability..."
@@ -109,29 +105,25 @@ elif [ -f vendor/$ROM_BUILD_NAME/tools/changelog.sh ]; then
    # Copy Changelog Template Files
    echo "Copying Device Specific Changelog Templates..."
    echo ""
-   echo "1/6..."
+   echo "1/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Amogus Changelog.txt.Amogus
    sleep 5
-   echo "2/6..."
+   echo "2/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Borneo Changelog.txt.Borneo
    sleep 5
-   echo "3/6..."
+   echo "3/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Guamna Changelog.txt.Guamna
    sleep 5
-   echo "4/6..."
+   echo "4/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Milanf Changelog.txt.Milanf
    sleep 5
-   echo "5/6..."
+   echo "5/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Osaka Changelog.txt.Osaka
-   sleep 5
-   echo "6/6..."
-   echo ""
-   cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Rhodep Changelog.txt.Rhodep
    sleep 5
 elif [ -f vendor/$ROM_BUILD_NAME/build/tools/changelog.sh ]; then
    echo "Rom changelog.sh Found, Hijacking For Custom Changelog Ability..."
@@ -153,29 +145,25 @@ elif [ -f vendor/$ROM_BUILD_NAME/build/tools/changelog.sh ]; then
    # Copy Changelog Template Files
    echo "Copying Device Specific Changelog Templates..."
    echo ""
-   echo "1/6..."
+   echo "1/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Amogus Changelog.txt.Amogus
    sleep 5
-   echo "2/6..."
+   echo "2/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Borneo Changelog.txt.Borneo
    sleep 5
-   echo "3/6..."
+   echo "3/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Guamna Changelog.txt.Guamna
    sleep 5
-   echo "4/6..."
+   echo "4/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Milanf Changelog.txt.Milanf
    sleep 5
-   echo "5/6..."
+   echo "5/5..."
    echo ""
    cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Osaka Changelog.txt.Osaka
-   sleep 5
-   echo "6/6..."
-   echo ""
-   cp -r $A_TEAM_PACKAGE_LOCATION/Changelog/Changelog.txt.Rhodep Changelog.txt.Rhodep
    sleep 5
 fi
 
@@ -213,31 +201,27 @@ sed -i '/# Custom APN Mechanism/ a ifeq ($(CUSTOM_APN), true)\nDEFAULT_APNS_FILE
 sleep 5
 echo "Copying & Setting Up Modified Common Device Tree Files..."
 echo ""
-echo "1/7..."
+echo "1/6..."
 echo ""
 cp -r $A_TEAM_PACKAGE_LOCATION/device/motorola/sm4250-common device/motorola
 sleep 5
-echo "2/7..."
+echo "2/6..."
 echo ""
 cp -r $A_TEAM_PACKAGE_LOCATION/device/motorola/sm4350-common device/motorola
 sleep 5
-echo "3/7..."
-echo ""
-cp -r $A_TEAM_PACKAGE_LOCATION/device/motorola/sm6150-common device/motorola
-sleep 5
-echo "4/7..."
+echo "3/6..."
 echo ""
 cp -r $A_TEAM_PACKAGE_LOCATION/device/motorola/targets/include/kernel/source.mk device/motorola/targets/include/kernel
 sleep 5
-echo "5/7..."
+echo "4/6..."
 echo ""
 rm -rf device/motorola/targets/scripts
 sleep 5
-echo "6/7..."
+echo "5/6..."
 echo ""
 cp -r $A_TEAM_PACKAGE_LOCATION/device/motorola/targets/scripts device/motorola/targets
 sleep 5
-echo "7/7..."
+echo "6/6..."
 echo ""
 cp -r $A_TEAM_PACKAGE_LOCATION/device/motorola/targets/Update_Rom_Symlinks.sh device/motorola/targets
 sleep 5
@@ -510,43 +494,6 @@ echo ""
 cp -r $A_TEAM_PACKAGE_LOCATION/kernel/motorola/msm-5.4/arch/arm64/configs/vendor/osaka_defconfig kernel/motorola/msm-5.4/arch/arm64/configs/vendor
 sleep 5
 
-
-# Rhodep Setup
-##########################################################################################################
-
-# Move Files To Location
-echo "Copying Rhodep Files Into Device Tree..."
-echo ""
-echo "1/1..."
-echo ""
-cp -r $A_TEAM_PACKAGE_LOCATION/device/motorola/rhodep/rro_overlays device/motorola/rhodep
-sleep 5
-
-# Patch device.mk
-echo "Patching Rhodep device.mk In Device Tree..."
-echo ""
-echo "1/2..."
-echo ""
-sed -i 's/PRODUCT_MODEL := moto g(82)/PRODUCT_MODEL := Moto G82 5G/g' device/motorola/rhodep/device.mk
-sleep 5
-echo "2/2..."
-echo ""
-sed -i '/DEVICE_CHARACTERISTICS += hfr/ a\\ \n# Disable Adaptive Brightness\nPRODUCT_PACKAGES += rhodepSettingsProviderOverlay' device/motorola/rhodep/device.mk
-sleep 5
-
-# Backup & Copy rhodep_defconfig File
-echo "Backing Up Original rhodep_defconfig In Device Tree..."
-echo ""
-echo "1/1..."
-echo ""
-mv kernel/motorola/msm-5.4/arch/arm64/configs/vendor/rhodep_defconfig kernel/motorola/msm-5.4/arch/arm64/configs/vendor/rhodep_defconfig.bak >/dev/null 2>&1
-sleep 5
-echo "Copying Modified rhodep_defconfig Into Device Tree..."
-echo ""
-echo "1/1..."
-echo ""
-cp -r $A_TEAM_PACKAGE_LOCATION/kernel/motorola/msm-5.4/arch/arm64/configs/vendor/rhodep_defconfig kernel/motorola/msm-5.4/arch/arm64/configs/vendor
-sleep 5
 
 
 ##########################################################################################################

@@ -5,18 +5,18 @@
 #
 # A-Team Moto-Common Telegram Notification Bot Addon
 #
-# Bot Version: 0.02"
+# Bot Version: 0.03"
 # Bot Update Date: 12-22-2023"
 #
 
 
 # Telegram Bot Variables - **User Adaptable**
-export CHANNEL_ID='-1001881525724'
-export BOT_TOKEN='6980538384:AAFwUFeMM1ML_Jal5N_d7-EDU793WMykgx4'
+export CHANNEL_ID=' '
+export BOT_TOKEN=' '
 
 
 # Device Specific Thread Topic Variables - **User Adaptable**
-export OSAKA_THREAD_ID='5744'
+export OSAKA_THREAD_ID=' '
 
 
 # if the first argument is "-h" for help.

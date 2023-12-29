@@ -5,18 +5,20 @@
 #
 # A-Team Moto-Common Telegram Notification Bot Addon
 #
-# Bot Version: 0.03"
-# Bot Update Date: 12-22-2023"
+# Bot Version: 0.05"
+# Bot Update Date: 12-28-2023"
 #
 
 
 # Telegram Bot Variables - **User Adaptable**
-export CHANNEL_ID=' '
-export BOT_TOKEN=' '
+export CHANNEL_ID_1=''
+export CHANNEL_ID_2=''
+export CHANNEL_ID_3=''
+export BOT_TOKEN=''
 
 
 # Device Specific Thread Topic Variables - **User Adaptable**
-export BORNEO_THREAD_ID=' '
+export BORNEO_THREAD_ID_1=''
 
 
 # if the first argument is "-h" for help.
@@ -41,4 +43,8 @@ fi
 # send a POST request to Telegram's API
 # The '-s' = "silent" mode
 # redirect outputs to /dev/null
-curl -s --data "text=$1" --data "chat_id=$CHANNEL_ID" --data "message_thread_id=$BORNEO_THREAD_ID" 'https://api.telegram.org/bot'$BOT_TOKEN'/sendMessage' > /dev/null. follow instructions to create bot & get token to access the HTTP API.
+curl -s --data "text=$1" --data "chat_id=$CHANNEL_ID_1" --data "message_thread_id=$BORNEO_THREAD_ID_1" 'https://api.telegram.org/bot'$BOT_TOKEN'/sendMessage' > /dev/null. follow instructions to create bot and get token to access the HTTP API.
+
+curl -s --data "text=$1" --data "chat_id=$CHANNEL_ID_2" 'https://api.telegram.org/bot'$BOT_TOKEN'/sendMessage' > /dev/null. follow instructions to create bot and get token to access the HTTP API.
+
+curl -s --data "text=$1" --data "chat_id=$CHANNEL_ID_3" 'https://api.telegram.org/bot'$BOT_TOKEN'/sendMessage' > /dev/null. follow instructions to create bot and get token to access the HTTP API.

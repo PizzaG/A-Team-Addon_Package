@@ -1,10 +1,14 @@
 @echo off
 
-del /f Windows-log.txt
+IF EXIST Windows_log.txt (
+    del Windows_log.txt
+) 
 
 %~d0
 cd %~dp0\A-Team
 
 echo:
-.\WINDOWS.bat | ../Tee-Object Windows_log.txt
+cmd /c .\WINDOWS.bat 2>&1 | tee ../Windows_log.txt 2>&1
+
+
 

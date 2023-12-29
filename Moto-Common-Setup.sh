@@ -25,8 +25,8 @@ echo ""
 echo "A-Team Moto-Common Setup Script"
 echo ""
 echo ""
-echo "Setup Version: 0.11"
-echo "Setup Update: 12-22-2023"
+echo "Setup Version: 0.12"
+echo "Setup Update: 12-28-2023"
 echo ""
 echo ""
 echo "Current Date: $date"
@@ -176,9 +176,11 @@ cp -r $A_TEAM_PACKAGE_LOCATION/device/motorola/A-Team device/motorola
 sleep 5
 echo "Copying A-Team Telegram Bot Folder To Rom Root..."
 echo ""
-echo "1/1..."
+echo "1/2..."
 echo ""
 mkdir Telegram_Bots
+echo "2/2..."
+echo ""
 cp -r $A_TEAM_PACKAGE_LOCATION/Telegram_Bots/* Telegram_Bots
 sleep 5
 ## Patch CommonConfig.mk

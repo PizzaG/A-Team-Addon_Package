@@ -19,7 +19,7 @@ echo "========== A-Team Rom Flasher ============"
 echo "------------------------------------------"
 echo "-                                        -"
 echo "-           Built By: PizzaG             -"
-echo "-       Installer Version: 0.12          -"
+echo "-       Installer Version: 0.13          -"
 echo "-                                        -"
 echo "------------------------------------------"
 echo "-                                        -"
@@ -153,14 +153,14 @@ echo ""
 # Flash Product
 echo "Flashing Product..."
 echo ""
-fastboot flash product_a product_a.img
+fastboot flash product_a product.img
 echo ""
 echo ""
 
 # Flash System
 echo "Flashing System..."
 echo ""
-fastboot flash system_a system_a.img
+fastboot flash system_a system.img
 echo ""
 echo ""
 
@@ -175,7 +175,7 @@ echo ""
 else
 echo "Flashing Encryption UnPatched Vendor..."
 echo ""
-fastboot flash vendor_a vendor_a.img
+fastboot flash vendor_a vendor.img
 echo ""
 echo ""
 fi

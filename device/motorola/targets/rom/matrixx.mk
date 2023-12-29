@@ -15,7 +15,7 @@ $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 # Matrixx
 MATRIXX_BUILD_TYPE := Unofficial
 MATRIXX_MAINTAINER := PizzaG
-WITH_GAPPS := true
+WITH_GMS := true
 
 # Auto Matrixx Device Selection
 ifeq ($(DEVICE_NAME),Amogus)

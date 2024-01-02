@@ -75,6 +75,8 @@
     <!-- SM6125 (4.14) -->
     <project path="kernel/motorola/msm-4.14" name="android_kernel_motorola_msm-4.14"
         remote="moto-common" revision="14" />
+    <project path="kernel/motorola/msm-4.14-hanoip" name="android_kernel_motorola_msm-4.14"
+        remote="moto-common" revision="14-sm6150" />
     <project path="device/motorola/amogus-kernel" name="android_device_motorola_amogus-kernel"
         remote="moto-common" revision="master" />
     <project path="device/motorola/amogus" name="android_device_motorola_amogus"

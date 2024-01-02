@@ -1,6 +1,6 @@
 #
 # (C) 2019-Present A-Team Digital Solutions
-# (C) 2023 Electimon
+# (C) 2024 Electimon
 #
 
 include device/motorola/targets/include/kernel/common.mk
@@ -28,6 +28,10 @@ TARGET_KERNEL_CONFIG := vendor/$(DEVICE)_defconfig
 ifeq ($(PRODUCT_USES_QCOM_HARDWARE),true)
   ifeq ($(DEVICE_NAME), Borneo)
       TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)-borneo
+      PRODUCT_SOONG_NAMESPACES += \
+          [$(DEVICE_NAME)_$(TARGET_KERNEL_VERSION)_Kernel]
+  else ifeq ($(DEVICE_NAME), Hanoip)
+      TARGET_KERNEL_SOURCE := kernel/motorola/msm-$(TARGET_KERNEL_VERSION)-hanoip
       PRODUCT_SOONG_NAMESPACES += \
           [$(DEVICE_NAME)_$(TARGET_KERNEL_VERSION)_Kernel]
   else

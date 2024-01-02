@@ -5,7 +5,7 @@
 #
 # A-Team Moto-Common Telegram Notification Bot Addon
 #
-# Bot Version: 0.05"
+# Bot Version: 0.04"
 # Bot Update Date: 12-28-2023"
 #
 

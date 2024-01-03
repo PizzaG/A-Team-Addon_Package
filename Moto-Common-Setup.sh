@@ -471,13 +471,13 @@ echo "Backing Up Original hanoip_defconfig In Device Tree..."
 echo ""
 echo "1/1..."
 echo ""
-mv kernel/motorola/msm-4.19-hanoip/arch/arm64/configs/vendor/hanoip_defconfig kernel/motorola/msm-4.19-hanoip/arch/arm64/configs/vendor/hanoip_defconfig.bak
+mv kernel/motorola/msm-4.14-hanoip/arch/arm64/configs/vendor/hanoip_defconfig kernel/motorola/msm-4.14-hanoip/arch/arm64/configs/vendor/hanoip_defconfig.bak
 sleep 5
 echo "Copying Modified hanoip_defconfig Into Device Tree..."
 echo ""
 echo "1/1..."
 echo ""
-cp -r $A_TEAM_PACKAGE_LOCATION/kernel/motorola/msm-4.19-hanoip/arch/arm64/configs/vendor/hanoip_defconfig kernel/motorola/msm-4.19-hanoip/arch/arm64/configs/vendor
+cp -r $A_TEAM_PACKAGE_LOCATION/kernel/motorola/msm-4.14-hanoip/arch/arm64/configs/vendor/hanoip_defconfig kernel/motorola/msm-4.14-hanoip/arch/arm64/configs/vendor
 sleep 5
 
 

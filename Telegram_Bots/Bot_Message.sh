@@ -63,6 +63,12 @@ A New Custom Rom Has Been Released On SourceForge📱👍😁
 
 • Bug Tracker For Moto-Common Devices
 - https://github.com/moto-common/bug_tracker
+
+• Developer Donate Links
+- @electimon - Moto-Common Device Tree, Bug Fixing
+- https://paypal.me/electimon
+- @PizzaG - Rom Building, Bug Reporting
+- https://paypal.me/PizzaG98
 "
 expect "Pass*"
 send "$pass\r"

@@ -1,6 +1,6 @@
 #
 # Copyright 2019-Present A-Team Digital Solutions
-# Copyright 2023 Electimon
+# Copyright 2024 Electimon
 #
 
 # Common
@@ -13,11 +13,11 @@ $(call inherit-product, vendor/bootleggers/config/common.mk)
 TARGET_BOOT_ANIMATION_RES := 1080
 TARGET_FACE_UNLOCK_SUPPORTED := true
 TARGET_USES_BLUR := false
-TARGET_INCLUDE_LIVE_WALLPAPERS := false
-TARGET_INCLUDE_STOCK_ARCORE := false
+TARGET_INCLUDE_LIVE_WALLPAPERS := true
+TARGET_INCLUDE_STOCK_ARCORE := true
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 2460
+TARGET_SCREEN_HEIGHT := 2400
 TARGET_SCREEN_WIDTH := 1080
 
 # Maintainer Prop

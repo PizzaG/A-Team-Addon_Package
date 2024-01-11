@@ -1,6 +1,6 @@
 #
 # Copyright 2019-Present A-Team Digital Solutions
-# Copyright 2023 Electimon
+# Copyright 2024 Electimon
 #
 
 # Common
@@ -23,8 +23,7 @@ EXTRA_UDFPS_ANIMATIONS := false
 
 # Maintainer Stuff
 CHERISH_BUILD_TYPE := UNOFFICIAL
-PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
-    ro.cherish.maintainer=PizzaG
+CHERISH_MAINTAINER := PizzaG
 
 # Kernel
 $(call inherit-product, device/motorola/targets/include/kernel/source.mk)

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <project path="device/motorola/sm8250-common" name="android_device_motorola_sm8250-common"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/sm8250-common-kernel" name="android_device_motorola_sm8250-common-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/nio-kernel" name="android_device_motorola_nio-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/nio" name="android_device_motorola_nio"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/sm8250-common" name="android_vendor_motorola_sm8250-common"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/nio" name="android_vendor_motorola_nio"
+        remote="moto-common" revision="14" />
+</manifest>

@@ -13,9 +13,7 @@ su -lp 2000 -c "cmd notification post -S bigtext -t 'A-Team Notification - Start
 sleep 25
 
 # A-Team App Installation
-pm install -r "/product/A-Team_TMP/Apps/Cricket-VVM.apk"
-sleep 1
-pm install -r "/product/A-Team_TMP/Apps/MyCricket.apk"
+pm install -r "/product/A-Team_TMP/Apps/Chrome.apk"
 sleep 1
 pm install -r "/product/A-Team_TMP/Apps/OpenCamera.apk"
 sleep 1

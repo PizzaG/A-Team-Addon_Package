@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <project path="device/motorola/common" name="android_device_motorola_common"
+        remote="moto-common" revision="14" >
+        <linkfile src="hardware/qcom/os_pickup_ext.mk" dest="vendor/qcom/opensource/Android.mk" />
+    </project>
+    <project path="device/motorola/targets" name="android_device_motorola_targets"
+        remote="moto-common" revision="master" />
+    <project path="vendor/motorola/common" name="android_vendor_motorola_common"
+        remote="moto-common" revision="14-yume" />
+    <project path="hardware/motorola" name="android_hardware_motorola"
+        remote="moto-common" revision="master" />
+</manifest>

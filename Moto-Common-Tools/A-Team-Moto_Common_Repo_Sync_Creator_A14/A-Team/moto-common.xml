@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <remote name="moto-common"
+        fetch="https://github.com/moto-common/" />
+    <remote name="aospa"
+        fetch="https://github.com/AOSPA/" />
+    <remote name="aospa-vendor"
+        fetch="https://github.com/ThankYouMario/" />
+    <remote name="moto-common-vendor"
+        fetch="https://git.libremobileos.com/electimon/" />
+    <!-- CLO -->
+    <remote name="clo-la"
+            fetch="https://git.codelinaro.org/clo/la"
+            sync-c="true"
+            sync-tags="false" />
+
+    <!-- moto-common main tree -->
+    <include name="local_manifests/fragments/common.xml"/>
+    <!-- misc trees -->
+    <include name="local_manifests/fragments/misc.xml"/>
+    <!-- device trees -->
+    <include name="local_manifests/fragments/mt6768.xml"/>
+    <include name="local_manifests/fragments/mt6833.xml"/>
+    <include name="local_manifests/fragments/mt6879.xml"/>
+    <include name="local_manifests/fragments/sm4250.xml"/>
+    <include name="local_manifests/fragments/sm4350.xml"/>
+    <include name="local_manifests/fragments/sm6125.xml"/>
+    <include name="local_manifests/fragments/sm6150.xml"/>
+    <include name="local_manifests/fragments/sm6450.xml"/>
+    <include name="local_manifests/fragments/sm8250.xml"/>
+    <!-- soc specific trees -->
+    <include name="local_manifests/fragments/soc/mtk.xml"/>
+    <include name="local_manifests/fragments/soc/qcom.xml"/>
+</manifest>

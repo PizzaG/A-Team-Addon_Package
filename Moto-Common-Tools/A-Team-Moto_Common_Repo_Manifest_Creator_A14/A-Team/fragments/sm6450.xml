@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <project path="kernel/motorola/msm-5.10" name="android_kernel_motorola_msm-5.10"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/sm6450-common-kernel" name="android_device_motorola_sm6450-common-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/sm6450-common" name="android_device_motorola_sm6450-common"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/yume-kernel" name="android_device_motorola_yume-kernel"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/yume" name="android_device_motorola_yume"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/sm6450-common" name="android_vendor_motorola_sm6450-common"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/yume" name="android_vendor_motorola_yume"
+        remote="moto-common" revision="14" />
+</manifest>

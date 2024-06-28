@@ -1,6 +1,6 @@
 #
 # Copyright 2019-Present A-Team Digital Solutions
-# Copyright 2023 Electimon
+# Copyright 2024 Electimon
 #
 
 # Common
@@ -30,12 +30,20 @@ else ifeq ($(DEVICE_NAME),Guamna)
     MATRIXX_CHIPSET := SM4250
     MATRIXX_BATTERY := 5000mAh
     MATRIXX_DISPLAY := 1080x2400
+else ifeq ($(DEVICE_NAME),Hanoip)
+    MATRIXX_CHIPSET := SM7150
+    MATRIXX_BATTERY := 6000mAh
+    MATRIXX_DISPLAY := 1080x2460
 else ifeq ($(DEVICE_NAME),Milanf)
     MATRIXX_CHIPSET := SM6375
     MATRIXX_BATTERY := 5000mAh
     MATRIXX_DISPLAY := 1080x2460
 else ifeq ($(DEVICE_NAME),Osaka)
     MATRIXX_CHIPSET := SM4350
+    MATRIXX_BATTERY := 5000mAh
+    MATRIXX_DISPLAY := 1080x2400
+else ifeq ($(DEVICE_NAME),Yume)
+    MATRIXX_CHIPSET := SM6450
     MATRIXX_BATTERY := 5000mAh
     MATRIXX_DISPLAY := 1080x2400
 endif

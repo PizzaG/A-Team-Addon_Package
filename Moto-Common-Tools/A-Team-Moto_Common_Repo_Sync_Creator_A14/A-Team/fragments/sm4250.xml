@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <project path="kernel/motorola/msm-4.19" name="android_kernel_motorola_msm-4.19"
+        remote="moto-common" revision="14" />
+   <project path="kernel/motorola/msm-4.19-borneo" name="android_kernel_motorola_msm-4.19"
+        remote="moto-common" revision="14-2021" />
+    <project path="device/motorola/sm4250-common" name="android_device_motorola_sm4250-common"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/sm4250-common-kernel" name="android_device_motorola_sm4250-common-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/borneo-kernel" name="android_device_motorola_borneo-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/borneo" name="android_device_motorola_borneo"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/caprip-kernel" name="android_device_motorola_caprip-kernel"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/caprip" name="android_device_motorola_caprip"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/guamna-kernel" name="android_device_motorola_guamna-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/guamna" name="android_device_motorola_guamna"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/sm4250-common" name="android_vendor_motorola_sm4250-common"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/borneo" name="android_vendor_motorola_borneo"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/caprip" name="android_vendor_motorola_caprip"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/guamna" name="android_vendor_motorola_guamna"
+        remote="moto-common" revision="14" />
+</manifest>

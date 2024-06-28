@@ -1,0 +1,26 @@
+—Release Updates v0.04—
+Updated manifest.xml for Android 14 Moto-Common Device Support...
+
+—Release Updates v0.05 - 11-21-2023—
+Add fm Radio to manifest, update python script to newest, manifest formatting fixup
+
+—Release Updates v0.06 - 11-22-2023—
+remove FM Radio since it's not ready yet for Android 14
+
+—Release Updates v0.07 - 12-25-2023—
+update against newest revision
+
+—Release Updates v0.08 - 1-2-2024—
+add hanoip 14 kernel
+
+—Release Updates v0.09 - 2-13-2024—
+update for new manifest layout, add yume/genevn, rework frontend
+
+—Release Updates v0.10 - 2-13-2024—
+add missing qcom repo
+
+—Release Updates v0.11 - 2-15-2024—
+should handle roms that use manifests or manifests/snippets for parsing manifest xml files
+
+—Release Updates v0.12 - 2-20-2024—
+updated against newest moto-common fragments manifests

@@ -13,7 +13,7 @@
 # Static Variables
 OUTFD=$2
 ZIP=$3
-export INSTALLER="/data/A-Team_Installer"
+export INSTALLER="/data/tmp/A-Team_Installer"
 KEYCHECK="$INSTALLER/A-Team/keycheck"
 SLOT=`getprop ro.boot.slot_suffix`
 
@@ -48,21 +48,6 @@ customkey() {
 
 ##### THE PARTY STARTS HERE ########
 
-# Format Data & MetaData
-ui_print " "
-ui_print " "
-ui_print " "
-ui_print " "
-ui_print "Formatting Data & MetaData..."
-umount /dev/block/bootdevice/by-name/userdata
-umount /data
-sleep 5
-make_f2fs -g android -O project_quota,extra_attr -O casefold -C utf8 /dev/block/bootdevice/by-name/userdata 59429367
-sload_f2fs -t /data /dev/block/bootdevice/by-name/userdata
-mke2fs -t ext4 -b 4096 /dev/block/bootdevice/by-name/metadata 4096
-e2fsdroid -e -S /file_contexts -a /metadata /dev/block/bootdevice/by-name/metadata
-mount -o rw /data
-
 # Initial Cleanup
 rm -rf $INSTALLER 2>/dev/null
 mkdir -p $INSTALLER
@@ -95,12 +80,19 @@ ui_print " #      v0.05 (c) PizzaG  11-19-2023     #"
 ui_print " #      v0.06 (c) PizzaG  11-29-2023     #"
 ui_print " #      v0.07 (c) PizzaG  12-10-2023     #"
 ui_print " #      v0.08 (c) PizzaG  12-22-2023     #"
+ui_print " #      v0.09 (c) PizzaG  2-25-2024      #"
+ui_print " #      v0.10 (c) PizzaG  5-10-2024      #"
+ui_print " #      v0.11 (c) PizzaG  5-15-2024      #"
+ui_print " #      v0.12 (c) PizzaG  5-16-2024      #"
+ui_print " #      v0.13 (c) PizzaG  5-30-2024      #"
+ui_print " #      v0.14 (c) PizzaG  6-4-2024       #"
+ui_print " #      v0.15 (c) PizzaG  6-22-2024      #"
 ui_print " #                                       #"
 ui_print " #########################################"
 ui_print " "
 ui_print " "
 ui_print " "
-sleep 5
+sleep 3
 
 # Program Volume Keys
 FUNCTION=customkey
@@ -122,8 +114,291 @@ ui_print " "
 ui_print " "
 ui_print " "
 
-# Option 1- Encryption
-ui_print "Would You Like To Disable Encryption ?"
+# Recovery 1
+ui_print "###########################"
+ui_print "#                         #"
+ui_print "#   Recovery Selection    #"
+ui_print "#                         #"
+ui_print "###########################"
+ui_print "#                         #"
+ui_print "#  -Available Recoveries- #"
+ui_print "#                         #"
+ui_print "#       OrangeFox         #"
+ui_print "#       PitchBlack        #"
+ui_print "#        SkyHawk          #"
+ui_print "#         TWRP            #"
+ui_print "#   Rom Built Recovery    #"
+ui_print "#                         #"
+ui_print "###########################"
+ui_print "Would You Like OrangeFox ?"
+ui_print "   Vol UP = YES "
+ui_print "   Vol DN = NO "
+if ! $FUNCTION ; then
+  clear
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "OrangeFox Custom Recovery Selected..."
+  export OFRP=TRUE
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "Installer Will Continue In 3 Seconds...."
+  sleep 3
+else
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "OrangeFox Not Selected, Moving On To Next Recovery..."
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  # Recovery 2
+  ui_print "###########################"
+  ui_print "#                         #"
+  ui_print "#   Recovery Selection    #"
+  ui_print "#                         #"
+  ui_print "###########################"
+  ui_print "#                         #"
+  ui_print "#  -Available Recoveries- #"
+  ui_print "#                         #"
+  ui_print "#       PitchBlack        #"
+  ui_print "#        SkyHawk          #"
+  ui_print "#         TWRP            #"
+  ui_print "#   Rom Built Recovery    #"
+  ui_print "#                         #"
+  ui_print "###########################"
+  ui_print "Would You Like PitchBlack ?"
+  ui_print "   Vol UP = YES "
+  ui_print "   Vol DN = NO "
+  if ! $FUNCTION ; then
+    clear
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "PitchBlack Custom Recovery Selected..."
+    export PBRP=TRUE
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "Installer Will Continue In 3 Seconds...."
+    sleep 3
+  else
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "PitchBlack Not Selected, Moving On To Next Recovery..."
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    # Recovery 3
+    ui_print "###########################"
+    ui_print "#                         #"
+    ui_print "#   Recovery Selection    #"
+    ui_print "#                         #"
+    ui_print "###########################"
+    ui_print "#                         #"
+    ui_print "#  -Available Recoveries- #"
+    ui_print "#                         #"
+    ui_print "#        SkyHawk          #"
+    ui_print "#         TWRP            #"
+    ui_print "#   Rom Built Recovery    #"
+    ui_print "#                         #"
+    ui_print "###########################"
+    ui_print "Would You Like SkyHawk ?"
+    ui_print "   Vol UP = YES "
+    ui_print "   Vol DN = NO "
+    if ! $FUNCTION ; then
+      clear
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print "SkyHawk Custom Recovery Selected..."
+      export SHRP=TRUE
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print "Installer Will Continue In 3 Seconds...."
+      sleep 3
+    else
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print "SkyHawk Not Selected, Moving On To Next Recovery..."
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      # Recovery 4
+      ui_print "###########################"
+      ui_print "#                         #"
+      ui_print "#   Recovery Selection    #"
+      ui_print "#                         #"
+      ui_print "###########################"
+      ui_print "#                         #"
+      ui_print "#  -Available Recoveries- #"
+      ui_print "#                         #"
+      ui_print "#         TWRP            #"
+      ui_print "#   Rom Built Recovery    #"
+      ui_print "#                         #"
+      ui_print "###########################"
+      ui_print "Would You Like TWRP ?"
+      ui_print "   Vol UP = YES "
+      ui_print "   Vol DN = NO "
+      if ! $FUNCTION ; then
+        clear
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print "TWRP Custom Recovery Selected..."
+        export TWRP=TRUE
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print "Installer Will Continue In 3 Seconds...."
+        sleep 3
+      else
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print "Rom Built Recovery Selected..."
+        export ROM_RECOVERY=TRUE
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print "Installer Will Continue In 3 Seconds...."
+        sleep 3
+      fi
+    fi
+  fi
+fi
+
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+
+# Root 1
+ui_print "###########################"
+ui_print "#                         #"
+ui_print "#      Root Selection     #"
+ui_print "#                         #"
+ui_print "###########################"
+ui_print "#                         #"
+ui_print "#     -Available Root-    #"
+ui_print "#                         #"
+ui_print "#        KernelSU         #"
+ui_print "#         Magisk          #"
+ui_print "#         No Root         #"
+ui_print "#                         #"
+ui_print "###########################"
+ui_print "Would You Like KernelSU ?"
+ui_print "   Vol UP = YES "
+ui_print "   Vol DN = NO "
+if ! $FUNCTION ; then
+  clear
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "KernelSU Root Selected..."
+  export ROOT=KSU
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "Installer Will Continue In 3 Seconds...."
+  sleep 3
+else
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "KernelSU Root Not Selected, Moving On To Next Root Option..."
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  # Root 1
+  ui_print "###########################"
+  ui_print "#                         #"
+  ui_print "#      Root Selection     #"
+  ui_print "#                         #"
+  ui_print "###########################"
+  ui_print "#                         #"
+  ui_print "#     -Available Root-    #"
+  ui_print "#                         #"
+  ui_print "#         Magisk          #"
+  ui_print "#         No Root         #"
+  ui_print "#                         #"
+  ui_print "###########################"
+  ui_print "Would You Like Magisk ?"
+  ui_print "   Vol UP = YES "
+  ui_print "   Vol DN = NO "
+  if ! $FUNCTION ; then
+    clear
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "Magisk Root Selected..."
+    export ROOT=MAGISK
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "Installer Will Continue In 3 Seconds...."
+    sleep 3
+  else
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "No Root Option Selected..."
+    export ROOT=NONE
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "Installer Will Continue In 3 Seconds...."
+    sleep 3
+  fi
+fi
+
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+
+# Option 3- Encryption
+ui_print "###########################"
+ui_print "#                         #"
+ui_print "#  Encryption Selection   #"
+ui_print "#                         #"
+ui_print "###########################"
+ui_print "#                         #"
+ui_print "#   -Available Options-   #"
+ui_print "#                         #"
+ui_print "#   Disable Encryption    #"
+ui_print "#    Enable Encryption    #"
+ui_print "#                         #"
+ui_print "###########################"
+ui_print "Disable Device Encryption ?"
 ui_print "   Vol UP = YES  "
 ui_print "   Vol DN = NO "
 if ! $FUNCTION ; then
@@ -132,15 +407,15 @@ if ! $FUNCTION ; then
   ui_print " "
   ui_print " "
   ui_print " "
-  ui_print "Disable Encryption Selected..."
+  ui_print "Disable Device Encryption Selected..."
   export CRYPTO=FALSE
   ui_print " "
   ui_print " "
   ui_print " "
   ui_print " "
-  sleep 5
-  ui_print "Installer Will Continue In 5 Seconds...."
-  sleep 5
+  sleep 3
+  ui_print "Installer Will Continue In 3 Seconds...."
+  sleep 3
 else
   ui_print " "
   ui_print " "
@@ -151,9 +426,9 @@ else
   ui_print " "
   ui_print " "
   ui_print " "
-  sleep 5
-  ui_print "Installer Will Continue In 5 Seconds...."
-  sleep 5
+  sleep 3
+  ui_print "Installer Will Continue In 3 Seconds...."
+  sleep 3
 fi
 
 ui_print " "
@@ -161,11 +436,136 @@ ui_print " "
 ui_print " "
 ui_print " "
 
-# Boot
-ui_print "Flashing Boot..."
-ui_print " "
+# Flash Root / Recovery Choice
+if [[ $ROOT == KSU ]]
+then
+# Flash KernelSU OFRP
+if [[ $OFRP == TRUE ]]
+then
+echo "Flashing KernelSU Root & OrangeFox Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/KSU-OFRP.img of=/dev/block/by-name/boot$SLOT
+fi
+# Flash KernelSU PBRP
+if [[ $PBRP == TRUE ]]
+then
+echo "Flashing KernelSU Root & PitchBlack Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/KSU-PBRP.img of=/dev/block/by-name/boot$SLOT
+fi
+# Flash KernelSU SHRP
+if [[ $SHRP == TRUE ]]
+then
+echo "Flashing KernelSU Root & SkyHawk Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/KSU-SHRP.img of=/dev/block/by-name/boot$SLOT
+fi
+# Flash KernelSU TWRP
+if [[ $TWRP == TRUE ]]
+then
+echo "Flashing KernelSU Root & TWRP Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/KSU-TWRP.img of=/dev/block/by-name/boot$SLOT
+fi
+# Flash KernelSU Rom Built Recovery
+if [[ $ROM_RECOVERY == TRUE ]]
+then
+echo "Flashing KernelSU Root & Rom Built Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/KSU.img of=/dev/block/by-name/boot$SLOT
+fi
+
+elif [[ $ROOT == MAGISK ]]
+then
+# Flash Magisk OFRP
+if [[ $OFRP == TRUE ]]
+then
+echo "Flashing Magisk Root & OrangeFox Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/Magisk-OFRP.img of=/dev/block/by-name/boot$SLOT
+fi
+# Flash Magisk PBRP
+if [[ $PBRP == TRUE ]]
+then
+echo "Flashing Magisk Root & PitchBlack Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/Magisk-PBRP.img of=/dev/block/by-name/boot$SLOT
+fi
+# Flash Magisk SHRP
+if [[ $SHRP == TRUE ]]
+then
+echo "Flashing Magisk Root & SkyHawk Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/Magisk-SHRP.img of=/dev/block/by-name/boot$SLOT
+fi
+# Flash Magisk TWRP
+if [[ $TWRP == TRUE ]]
+then
+echo "Flashing Magisk Root & TWRP Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/Magisk-TWRP.img of=/dev/block/by-name/boot$SLOT
+fi
+# Flash Magisk Rom Built Recovery
+if [[ $ROM_RECOVERY == TRUE ]]
+then
+echo "Flashing Magisk Root & Rom Built Recovery..."
+echo ""
 SLOT=`getprop ro.boot.slot_suffix`
 dd if=$INSTALLER/A-Team/Magisk.img of=/dev/block/by-name/boot$SLOT
+fi
+
+elif [[ $ROOT == NONE ]]
+then
+# Flash Unrooted OFRP
+if [[ $OFRP == TRUE ]]
+then
+echo "Flashing Unrooted Boot Image & OrangeFox Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/Boot-OFRP.img of=/dev/block/by-name/boot$SLOT
+fi
+# Flash Unrooted PBRP
+if [[ $PBRP == TRUE ]]
+then
+echo "Flashing Unrooted Boot Image & PitchBlack Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/Boot-PBRP.img of=/dev/block/by-name/boot$SLOT
+fi
+# Flash Unrooted SHRP
+if [[ $SHRP == TRUE ]]
+then
+echo "Flashing Unrooted Boot Image & SkyHawk Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/Boot-SHRP.img of=/dev/block/by-name/boot$SLOT
+fi
+# Flash Unrooted TWRP
+if [[ $TWRP == TRUE ]]
+then
+echo "Flashing Unrooted Boot Image & TWRP Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/Boot-TWRP.img of=/dev/block/by-name/boot$SLOT
+fi
+# Flash Magisk Rom Built Recovery
+if [[ $ROM_RECOVERY == TRUE ]]
+then
+echo "Flashing Unrooted Boot Image & Rom Built Recovery..."
+echo ""
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/boot.img of=/dev/block/by-name/boot$SLOT
+fi
+fi
 
 # Dtbo
 ui_print "Flashing Dtbo..."
@@ -204,45 +604,36 @@ then
 ui_print " "
 ui_print " "
 ui_print " "
-ui_print "Rebuilding Super RW & Disabling Encryption..."
+ui_print "Rebuilding Super With Disabled Encryption..."
 ui_print " "
-mkdir /data/local
-mkdir /data/local/tmp
-cp -r $INSTALLER/A-Team/systemrw_1.32-NoEncrypt /data/local/tmp/systemrw_1.32
-chmod +x /data/local/tmp/systemrw_1.32/systemrw.sh
+cp -r $INSTALLER/A-Team/systemrw_1.32-NoEncrypt /data/tmp/systemrw_1.32
+chmod +x /data/tmp/systemrw_1.32/systemrw.sh
 # Run RW Script
 size=0
-sh -c /data/local/tmp/systemrw_1.32/systemrw.sh '$size'
+sh -c /data/tmp/systemrw_1.32/systemrw.sh '$size'
 else
 # Rebuild Super RW & Auto Disable Encrypt
 ui_print " "
 ui_print " "
 ui_print " "
-ui_print "Rebuilding Super RW..."
+ui_print "Rebuilding Super With Enabled Encryption..."
 ui_print " "
-mkdir /data/local
-mkdir /data/local/tmp
-cp -r $INSTALLER/A-Team/systemrw_1.32-Encrypt /data/local/tmp/systemrw_1.32
-chmod +x /data/local/tmp/systemrw_1.32/systemrw.sh
+cp -r $INSTALLER/A-Team/systemrw_1.32-Encrypt /data/tmp/systemrw_1.32
+chmod +x /data/tmp/systemrw_1.32/systemrw.sh
 # Run RW Script
 size=0
-sh -c /data/local/tmp/systemrw_1.32/systemrw.sh '$size'
+sh -c /data/tmp/systemrw_1.32/systemrw.sh '$size'
 fi
 
-# Format Data
+# Cleanup
 ui_print " "
 ui_print " "
 ui_print " "
-ui_print "Formatting Data & MetaData..."
-umount /dev/block/bootdevice/by-name/userdata
-umount /data
-sleep 5
-make_f2fs -g android -O project_quota,extra_attr -O casefold -C utf8 /dev/block/bootdevice/by-name/userdata 59429367
-sload_f2fs -t /data /dev/block/bootdevice/by-name/userdata
-mke2fs -t ext4 -b 4096 /dev/block/bootdevice/by-name/metadata 4096
-e2fsdroid -e -S /file_contexts -a /metadata /dev/block/bootdevice/by-name/metadata
-mount -o rw /data
-sleep 5
+ui_print " "
+ui_print "Cleaning Up..."
+rm -rf /data/*
+sleep 3
+
 
 # Finalization
 ui_print " "

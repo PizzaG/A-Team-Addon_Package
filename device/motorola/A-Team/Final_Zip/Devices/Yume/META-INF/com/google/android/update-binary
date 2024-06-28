@@ -1,0 +1,583 @@
+#!/sbin/sh
+
+#
+# Copyright (C) 2019-Present A-Team Digital Solutions
+#
+# ---------------------------------------------------------#
+#       A-Team Android Custom Installer (c) PizzaG         #
+# ---------------------------------------------------------#
+# For more information and discussion, contact me at:      #
+# https://t.me/A_Team_Digital_Solutions                    #
+#----------------------------------------------------------#
+
+# Static Variables
+OUTFD=$2
+ZIP=$3
+export INSTALLER="/data/tmp/A-Team_Installer"
+KEYCHECK="$INSTALLER/A-Team/keycheck"
+SLOT=`getprop ro.boot.slot_suffix`
+
+# Permissions
+umask 022
+
+# Print Function
+ui_print() {
+  echo -n -e "ui_print $1\n" > /proc/self/fd/$OUTFD
+  echo -n -e "ui_print\n" > /proc/self/fd/$OUTFD
+}
+
+# Volume Key Function
+customkey() {
+  # Calling First Time Detects Previous Input. Calling Second Time Will Do What We Want
+  $KEYCHECK
+  $KEYCHECK
+  SEL=$?
+  if [ "$1" == "UP" ]; then
+    UP=$SEL
+  elif [ "$1" == "DOWN" ]; then
+    DOWN=$SEL
+  elif [ $SEL -eq $UP ]; then
+    return 0
+  elif [ $SEL -eq $DOWN ]; then
+    return 1
+  else
+    ui_print "   Vol Key Not Detected!"
+    abort "   Use Name Change Method In TWRP"
+  fi
+}
+
+##### THE PARTY STARTS HERE ########
+
+# Initial Cleanup
+rm -rf $INSTALLER 2>/dev/null
+mkdir -p $INSTALLER
+
+# Extract Files
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print "Extracting Installation Files..."
+ui_print " "
+ui_print " "
+cd $INSTALLER
+unzip -o "$ZIP"
+chmod 777 $KEYCHECK
+
+ui_print " "
+ui_print " "
+ui_print " #########################################"
+ui_print " #                                       #"
+ui_print " #        A-Team Custom Installer        #"
+ui_print " #                                       #"
+ui_print " #########################################"
+ui_print " #                                       #"
+ui_print " #      v0.01 (c) PizzaG  1-8-2022       #"
+ui_print " #      v0.02 (c) PizzaG  3-1-2023       #"
+ui_print " #      v0.03 (c) PizzaG  3-8-2023       #"
+ui_print " #      v0.04 (c) PizzaG  3-14-2023      #"
+ui_print " #      v0.05 (c) PizzaG  11-19-2023     #"
+ui_print " #      v0.06 (c) PizzaG  11-29-2023     #"
+ui_print " #      v0.07 (c) PizzaG  12-10-2023     #"
+ui_print " #      v0.08 (c) PizzaG  12-22-2023     #"
+ui_print " #      v0.09 (c) PizzaG  2-25-2024      #"
+ui_print " #      v0.10 (c) PizzaG  5-10-2024      #"
+ui_print " #      v0.11 (c) PizzaG  5-15-2024      #"
+ui_print " #      v0.12 (c) PizzaG  5-16-2024      #"
+ui_print " #      v0.13 (c) PizzaG  5-30-2024      #"
+ui_print " #      v0.14 (c) PizzaG  6-4-2024       #"
+ui_print " #                                       #"
+ui_print " #########################################"
+ui_print " "
+ui_print " "
+ui_print " "
+sleep 3
+
+# Program Volume Keys
+FUNCTION=customkey
+ui_print " "
+ui_print " - Vol Key Programming -"
+ui_print "   Press Vol Down..."
+$FUNCTION "UP"
+ui_print "   Press Vol Up..."
+$FUNCTION "DOWN"
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+
+ui_print "Current Flashing Slot = Slot$SLOT "
+
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+
+# Recovery 1
+ui_print "###########################"
+ui_print "#                         #"
+ui_print "#   Recovery Selection    #"
+ui_print "#                         #"
+ui_print "###########################"
+ui_print "#                         #"
+ui_print "#  -Available Recoveries- #"
+ui_print "#                         #"
+ui_print "#       OrangeFox         #"
+ui_print "#       PitchBlack        #"
+ui_print "#        SkyHawk          #"
+ui_print "#         TWRP            #"
+ui_print "#   Rom Built Recovery    #"
+ui_print "#                         #"
+ui_print "###########################"
+ui_print "Would You Like OrangeFox ?"
+ui_print "   Vol UP = YES "
+ui_print "   Vol DN = NO "
+if ! $FUNCTION ; then
+  clear
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "OrangeFox Custom Recovery Selected..."
+  export OFRP=TRUE
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "Installer Will Continue In 3 Seconds...."
+  sleep 3
+else
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "OrangeFox Not Selected, Moving On To Next Recovery..."
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  # Recovery 2
+  ui_print "###########################"
+  ui_print "#                         #"
+  ui_print "#   Recovery Selection    #"
+  ui_print "#                         #"
+  ui_print "###########################"
+  ui_print "#                         #"
+  ui_print "#  -Available Recoveries- #"
+  ui_print "#                         #"
+  ui_print "#       PitchBlack        #"
+  ui_print "#        SkyHawk          #"
+  ui_print "#         TWRP            #"
+  ui_print "#   Rom Built Recovery    #"
+  ui_print "#                         #"
+  ui_print "###########################"
+  ui_print "Would You Like PitchBlack ?"
+  ui_print "   Vol UP = YES "
+  ui_print "   Vol DN = NO "
+  if ! $FUNCTION ; then
+    clear
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "PitchBlack Custom Recovery Selected..."
+    export PBRP=TRUE
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "Installer Will Continue In 3 Seconds...."
+    sleep 3
+  else
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "PitchBlack Not Selected, Moving On To Next Recovery..."
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    # Recovery 3
+    ui_print "###########################"
+    ui_print "#                         #"
+    ui_print "#   Recovery Selection    #"
+    ui_print "#                         #"
+    ui_print "###########################"
+    ui_print "#                         #"
+    ui_print "#  -Available Recoveries- #"
+    ui_print "#                         #"
+    ui_print "#        SkyHawk          #"
+    ui_print "#         TWRP            #"
+    ui_print "#   Rom Built Recovery    #"
+    ui_print "#                         #"
+    ui_print "###########################"
+    ui_print "Would You Like SkyHawk ?"
+    ui_print "   Vol UP = YES "
+    ui_print "   Vol DN = NO "
+    if ! $FUNCTION ; then
+      clear
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print "SkyHawk Custom Recovery Selected..."
+      export SHRP=TRUE
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print "Installer Will Continue In 3 Seconds...."
+      sleep 3
+    else
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print "SkyHawk Not Selected, Moving On To Next Recovery..."
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      ui_print " "
+      # Recovery 4
+      ui_print "###########################"
+      ui_print "#                         #"
+      ui_print "#   Recovery Selection    #"
+      ui_print "#                         #"
+      ui_print "###########################"
+      ui_print "#                         #"
+      ui_print "#  -Available Recoveries- #"
+      ui_print "#                         #"
+      ui_print "#         TWRP            #"
+      ui_print "#   Rom Built Recovery    #"
+      ui_print "#                         #"
+      ui_print "###########################"
+      ui_print "Would You Like TWRP ?"
+      ui_print "   Vol UP = YES "
+      ui_print "   Vol DN = NO "
+      if ! $FUNCTION ; then
+        clear
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print "TWRP Custom Recovery Selected..."
+        export TWRP=TRUE
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print "Installer Will Continue In 3 Seconds...."
+        sleep 3
+      else
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print "No Custom Recovery Has Been Chosen, Flashing Rom Built Recovery...🤔"
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        ui_print " "
+        sleep 3
+        ui_print "Installer Will Continue In 3 Seconds...."
+        sleep 3
+        # Flash Rom Recovery
+        SLOT=`getprop ro.boot.slot_suffix`
+        dd if=$INSTALLER/A-Team/recovery.img of=/dev/block/by-name/recovery$SLOT
+      fi
+    fi
+  fi
+fi
+
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+
+# Root 1
+ui_print "###########################"
+ui_print "#                         #"
+ui_print "#      Root Selection     #"
+ui_print "#                         #"
+ui_print "###########################"
+ui_print "#                         #"
+ui_print "#     -Available Root-    #"
+ui_print "#                         #"
+ui_print "#        KernelSU         #"
+ui_print "#         Magisk          #"
+ui_print "#         No Root         #"
+ui_print "#                         #"
+ui_print "###########################"
+ui_print "Would You Like KernelSU ?"
+ui_print "   Vol UP = YES "
+ui_print "   Vol DN = NO "
+if ! $FUNCTION ; then
+  clear
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "KernelSU Root Selected..."
+  export KSU=TRUE
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "Installer Will Continue In 3 Seconds...."
+  sleep 3
+else
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "KernelSU Root Not Selected, Moving On To Next Root Option..."
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  # Root 1
+  ui_print "###########################"
+  ui_print "#                         #"
+  ui_print "#      Root Selection     #"
+  ui_print "#                         #"
+  ui_print "###########################"
+  ui_print "#                         #"
+  ui_print "#     -Available Root-    #"
+  ui_print "#                         #"
+  ui_print "#         Magisk          #"
+  ui_print "#         No Root         #"
+  ui_print "#                         #"
+  ui_print "###########################"
+  ui_print "Would You Like Magisk ?"
+  ui_print "   Vol UP = YES "
+  ui_print "   Vol DN = NO "
+  if ! $FUNCTION ; then
+    clear
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "Magisk Root Selected..."
+    export MAGISK=TRUE
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "Installer Will Continue In 3 Seconds...."
+    sleep 3
+  else
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print "No Root Option Selected, Device Won't Be Rooted 🤔,"
+    ui_print "Flashing UnRooted Boot Image..."
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    ui_print " "
+    sleep 3
+    ui_print "Installer Will Continue In 3 Seconds...."
+    sleep 3
+    # Flash Rom Recovery
+    SLOT=`getprop ro.boot.slot_suffix`
+    dd if=$INSTALLER/A-Team/boot.img of=/dev/block/by-name/boot$SLOT
+  fi
+fi
+
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+
+# Option 3- Encryption
+ui_print "###########################"
+ui_print "#                         #"
+ui_print "#  Encryption Selection   #"
+ui_print "#                         #"
+ui_print "###########################"
+ui_print "#                         #"
+ui_print "#   -Available Options-   #"
+ui_print "#                         #"
+ui_print "#   Disable Encryption    #"
+ui_print "#    Enable Encryption    #"
+ui_print "#                         #"
+ui_print "###########################"
+ui_print "Disable Device Encryption ?"
+ui_print "   Vol UP = YES  "
+ui_print "   Vol DN = NO "
+if ! $FUNCTION ; then
+  clear
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "Disable Device Encryption Selected..."
+  export CRYPTO=FALSE
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  sleep 3
+  ui_print "Installer Will Continue In 3 Seconds...."
+  sleep 3
+else
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print "Disable Encryption Skipped..."
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  ui_print " "
+  sleep 3
+  ui_print "Installer Will Continue In 3 Seconds...."
+  sleep 3
+fi
+
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+
+# Recovery Flashing
+if [[ $OFRP == TRUE ]]
+then
+# Flash OrangeFox
+ui_print "Flashing OrangeFox..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/OFRP.img of=/dev/block/by-name/recovery$SLOT
+fi
+if [[ $PBRP == TRUE ]]
+then
+# Flash PBRP
+ui_print "Flashing PitchBlack..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/PBRP.img of=/dev/block/by-name/recovery$SLOT
+fi
+if [[ $SHRP == TRUE ]]
+then
+# Flash SHRP
+ui_print "Flashing SkyHawk..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/SHRP.img of=/dev/block/by-name/recovery$SLOT
+fi
+if [[ $TWRP == TRUE ]]
+then
+# Flash TWRP
+ui_print "Flashing TWRP..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/TWRP.img of=/dev/block/by-name/recovery$SLOT
+fi
+
+# Root Flashing
+if [[ $KSU == TRUE ]]
+then
+# Flash KernelSU
+ui_print "Flashing KernelSU Root..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/KSU.img of=/dev/block/by-name/boot$SLOT
+fi
+if [[ $MAGISK == TRUE ]]
+then
+# Flash Magisk
+ui_print "Flashing Magisk Root..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/Magisk.img of=/dev/block/by-name/boot$SLOT
+fi
+
+# Dtbo
+ui_print "Flashing Dtbo..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/dtbo.img of=/dev/block/by-name/dtbo$SLOT
+
+# Super
+SLOT=`getprop ro.boot.slot_suffix`
+umount /dev/block/mapper/product$SLOT
+umount /dev/block/mapper/system_ext$SLOT
+umount /dev/block/mapper/vendor$SLOT
+umount /dev/block/mapper/system$SLOT
+umount /dev/block/mapper/vendor_dlkm$SLOT
+
+# Vbmeta
+ui_print "Flashing Vbmeta..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/vbmeta.img of=/dev/block/by-name/vbmeta$SLOT
+
+# Vbmeta_System
+ui_print "Flashing Vbmeta_System..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/vbmeta_system.img of=/dev/block/by-name/vbmeta_system$SLOT
+
+# Vendor_Boot
+ui_print "Flashing Vendor_Boot..."
+ui_print " "
+SLOT=`getprop ro.boot.slot_suffix`
+dd if=$INSTALLER/A-Team/vendor_boot.img of=/dev/block/by-name/vendor_boot$SLOT
+
+# Encryption
+if [[ $CRYPTO == FALSE ]]
+then
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print "Rebuilding Super With Disabled Encryption..."
+ui_print " "
+cp -r $INSTALLER/A-Team/systemrw_1.32-NoEncrypt /data/tmp/systemrw_1.32
+chmod +x /data/tmp/systemrw_1.32/systemrw.sh
+# Run RW Script
+size=0
+sh -c /data/tmp/systemrw_1.32/systemrw.sh '$size'
+else
+# Rebuild Super RW & Auto Disable Encrypt
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print "Rebuilding Super With Enabled Encryption..."
+ui_print " "
+cp -r $INSTALLER/A-Team/systemrw_1.32-Encrypt /data/tmp/systemrw_1.32
+chmod +x /data/tmp/systemrw_1.32/systemrw.sh
+# Run RW Script
+size=0
+sh -c /data/tmp/systemrw_1.32/systemrw.sh '$size'
+fi
+
+# Cleanup
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print "Cleaning Up..."
+rm -rf /data/*
+sleep 3
+
+
+# Finalization
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print " "
+ui_print "Installation Complete"
+ui_print " "
+ui_print " "
+ui_print " "
+sleep 3
+ui_print "Installer Will Exit & Device Will Reboot In 15 Seconds..."
+ui_print " "
+ui_print " "
+ui_print " "
+sleep 3
+ui_print "=)=) PLEASE ENJOY THIS RELEASE =)=)"
+sleep 15
+reboot

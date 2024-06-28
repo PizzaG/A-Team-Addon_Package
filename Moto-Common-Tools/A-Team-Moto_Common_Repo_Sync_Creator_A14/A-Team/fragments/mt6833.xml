@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <project path="kernel/motorola/mt6833" name="android_kernel_motorola_mt6833"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/mt6833-common-kernel" name="android_device_motorola_mt6833-common-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/mt6833-common" name="android_device_motorola_mt6833-common"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/yuzu-kernel" name="android_device_motorola_yuzu-kernel"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/yuzu" name="android_device_motorola_yuzu"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/mt6833-common" name="android_vendor_motorola_mt6833-common"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/yuzu" name="android_vendor_motorola_yuzu"
+        remote="moto-common" revision="14" />
+</manifest>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <project path="kernel/motorola/mt6768" name="android_kernel_motorola_mt6768"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/mt6768-common-kernel" name="android_device_motorola_mt6768-common-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/mt6768-common" name="android_device_motorola_mt6768-common"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/cofud-kernel" name="android_device_motorola_cofud-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/cofud" name="android_device_motorola_cofud"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/mt6768-common" name="android_vendor_motorola_mt6768-common"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/cofud" name="android_vendor_motorola_cofud"
+        remote="moto-common" revision="14" />
+</manifest>

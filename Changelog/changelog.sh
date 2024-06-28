@@ -5,7 +5,7 @@
 #
 
 # Exports
-out=$OUT_DIR/target/product/$DEVICE
+out=$OUT_DIR/target/product/$DEVICE_CODENAME
 if [ -f $out ]; # The path does not exist
 then
 	echo "The path to create changelog does not exist, exiting..."
@@ -19,5 +19,5 @@ touch $Changelog
 # Print something to build output
 echo "Generating A-Team Custom Changelog..."
 
-cp $Changelog $OUT_DIR/target/product/$DEVICE/system/etc/$Changelog
-cp $Changelog $OUT_DIR/target/product/$DEVICE/
+cp $Changelog $OUT_DIR/target/product/$DEVICE_CODENAME/system/etc/$Changelog
+cp $Changelog $OUT_DIR/target/product/$DEVICE_CODENAME/

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <project path="hardware/samsung/nfc" name="platform_hardware_samsung_nfc"
+        remote="moto-common" revision="master" />
+    <project path="hardware/nxp/nfc" name="platform_hardware_nxp_nfc"
+        remote="moto-common" revision="14" />
+    <project path="hardware/st/nfc" name="platform_hardware_st_nfc"
+        remote="moto-common" revision="master" />
+    <project path="device/sony/sepolicy" name="android_device_sony_sepolicy"
+        remote="moto-common" revision="master" />
+    <project path="vendor/goodix" name="platform_vendor_goodix"
+        remote="moto-common" revision="master" />
+    <project path="vendor/egistec/interfaces" name="platform_vendor_egistec_interfaces"
+        remote="moto-common" revision="master" />
+    <project path="external/json-c" name="platform_external_json-c"
+        remote="moto-common" revision="master" />
+    <project path="vendor/sony/timekeep" name="android_vendor_sony_timekeep"
+        remote="moto-common" revision="master" />
+    <project path="prebuilts/clang/host/linux-x86/clang-r383902" name="platform_prebuilts_clang_host_linux-x86_clang-r383902"
+        remote="moto-common" revision="master" />
+</manifest>

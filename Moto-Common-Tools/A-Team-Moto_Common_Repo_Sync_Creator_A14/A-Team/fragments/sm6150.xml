@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <project path="device/motorola/sm6150-common" name="android_device_motorola_sm6150-common"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/sm6150-common-kernel" name="android_device_motorola_sm6150-common-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/hanoip-kernel" name="android_device_motorola_hanoip-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/hanoip" name="android_device_motorola_hanoip"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/kasagi-kernel" name="android_device_motorola_kasagi-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/kasagi" name="android_device_motorola_kasagi"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/okinawa-kernel" name="android_device_motorola_okinawa-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/okinawa" name="android_device_motorola_okinawa"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/sm6150-common" name="android_vendor_motorola_sm6150-common"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/hanoip" name="android_vendor_motorola_hanoip"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/kasagi" name="android_vendor_motorola_kasagi"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/okinawa" name="android_vendor_motorola_okinawa"
+        remote="moto-common" revision="14" />
+</manifest>

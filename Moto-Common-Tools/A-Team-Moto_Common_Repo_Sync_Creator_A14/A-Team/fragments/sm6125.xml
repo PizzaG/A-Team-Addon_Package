@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <project path="kernel/motorola/msm-4.14" name="android_kernel_motorola_msm-4.14"
+        remote="moto-common" revision="14" />
+    <project path="kernel/motorola/msm-4.14-hanoip" name="android_kernel_motorola_msm-4.14"
+        remote="moto-common" revision="14-sm6150" />
+    <project path="device/motorola/amogus-kernel" name="android_device_motorola_amogus-kernel"
+        remote="moto-common" revision="master" />
+    <project path="device/motorola/amogus" name="android_device_motorola_amogus"
+        remote="moto-common" revision="14" />
+    <project path="device/motorola/amogus_doha" name="android_device_motorola_amogus_doha"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/amogus" name="android_vendor_motorola_amogus"
+        remote="moto-common" revision="14" />
+    <project path="vendor/motorola/amogus_doha" name="android_vendor_motorola_amogus_doha"
+        remote="moto-common" revision="14" />
+</manifest>

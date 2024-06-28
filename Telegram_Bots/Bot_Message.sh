@@ -6,72 +6,106 @@
 # A-Team Moto-Common Bot Message
 #
 
-expect - <<_END_EXPECT
-spawn sudo ./Telegram_Bots/Telegram_Bot-$DEVICE_NAME.sh "
+# Bot Message
+bot_message() {
+  expect - <<_END_EXPECT
+  set timeout 360 ;  # set timeout to 6 minutes
+  spawn sudo ./Telegram_Bots/Telegram_Bot-$UPLOAD_DEVICE_NAME.sh "
 
-Hello A-Team Users, 
+  Hello Fellow A-Team Members, 
 
-A New Custom Rom Has Been Released On SourceForge📱👍😁
+  📱 --->> New Rom Released On $SERVICE 📱
 
-• $ROM_ZIP_NAME $MAJOR_VERSION.$MINOR_VERSION | UNOFFICIAL 
 
-📱 Moto-Common Device Codename:  $DEVICE_NAME
+  • $ROM_ZIP_NAME $MAJOR_VERSION.$MINOR_VERSION | UNOFFICIAL 
 
-📅 Build Date: $BUILD_DATE
-🔄 Android: $ANDROID_VERSION
-📀 Build Type: $ROM_BUILD_TYPE
-🔐 SeLinux: Permissive | Enforcing
-📀 A-Team Version: $INTERNAL_VERSION
-👨‍💻 Maintainer: @PizzaG
 
-• Uses A-Team Custom Rom Installer
--Option To Disable Encryption
--Recovery Install
--Linux Install
--Windows Install
+  📱 Moto-Common Device Codename:  $UPLOAD_DEVICE_NAME
 
-• Rom Installation
-  *WILL WIPE DATA*
--Flash Rom Zip From Recovery
- OR
--Extract Rom Zip
--Run .sh file To Flash Device - Linux
- OR
--Run .bat File To Flash Device - Windows
--After A-Team Installation Finishes In Rom,
- Open Magisk Manager and Select Magisk Direct Install
--🥸Done!!👍😁
+  📅 Build Date: $BUILD_DATE
+  🔄 Android: $UPLOAD_ANDROID_VERSION
+  📀 Build Type: $UPLOAD_BUILD_TYPE
+  🔐 SeLinux: Permissive | Enforcing
+  📀 A-Team Version: $UPLOAD_INTERNAL_VERSION
+  👨‍💻 Maintainer: YOUR_NAME
 
-• Rom Download Link 
-- https://sourceforge.net/projects/a-team-rom-downloads/files/$DEVICE_NAME/$ROM_NAME.zip
 
-• A-Team Changelog:
--$CHANGELOG
+  • A-Team Custom Rom Installer Features
+  -5 Custom Recovery Options
+  -3 Root Options
+  -Enable / Disable Encryption Option
+  -Recovery Installer
+  -ADB Sideload Compatible
+  -Linux Installer
+  -Windows Installer
 
-• Navigation Bar Spacing WorkAround
--Open Settings
--Select System
--Select Gestures
--Select Navigation Mode
--Select Gesture Navigation
--Select 3-Button Navigation
--Go Back To Home/Desktop
--NavBar Spacing Should Be Fixed Now
 
-• Known Bugs:
--$BUGS
+  • Rom Installation
+    *WILL WIPE DATA*
 
-• Bug Tracker For Moto-Common Devices
-- https://github.com/moto-common/bug_tracker
+  -From Recovery
+   -Transfer Rom Zip To External SD Card
+   -Format Data From Recovery(yes option)
+   -Install Rom Zip
 
-• Developer Donate Links
-- @electimon - Moto-Common Device Tree, Bug Fixing
-- https://paypal.me/electimon
-- @PizzaG - Rom Building, Bug Reporting
-- https://paypal.me/PizzaG98
-"
-expect "Pass*"
-send "$pass\r"
-set timeout -1  ; # no timeout
-expect eof
+   OR
+
+  -From ADB Sideload
+   -Ensure ADB Installed And Working
+   -Open Terminal In Rom Location
+   -Run Command: 
+    adb shell twrp format data
+    adb sideload $UPLOAD_ROM_NAME
+
+   OR
+
+  -From Linux
+   -Extract Rom Zip
+   -Run .sh file To Flash Device From Linux
+
+   OR
+
+  -From Windows
+   -Extract Rom Zip
+   -Run .bat File To Flash Device From Windows
+
+  -After Rom Installation And Device Boots,
+   -Open Magisk Manager
+   -Select Magisk Direct Install
+   -Reboot
+   -🥸Done!!👍😁
+
+
+  • Rom Download Link 
+  - YOUR/DOWNLOAD/URL/$UPLOAD_DEVICE_NAME/$UPLOAD_ROM_NAME
+
+
+  • A-Team Changelog:
+  -$CHANGELOG
+
+
+  • Known Rom Bugs:
+  -$BUGS
+
+
+  • Developer Donate Links
+  - YOUR_DONATE_LINK
+  "
+  expect {
+      "assword" {
+          send "$SUDO_PASS\r"
+          set timeout -1 ;  # remove timeout for the rest of the process
+          exp_continue
+      }
+      timeout {
+          puts "Timeout Occurred While Waiting For Password Prompt."
+          exit 1
+      }
+      eof {
+          puts "End Of File Reached."
+      }
+  }
 _END_EXPECT
+}
+
+bot_message    

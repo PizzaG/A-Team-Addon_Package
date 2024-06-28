@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+    <!-- MTK Common -->
+    <project path="device/mediatek/common" name="android_device_mediatek_common"
+        remote="moto-common" revision="master" />
+    <project path="vendor/mediatek/common" name="android_vendor_mediatek_common"
+        remote="moto-common-vendor" revision="master" />
+    <project path="hardware/mediatek" name="platform_hardware_mediatek"
+        remote="moto-common" revision="master" />
+    <project path="device/mediatek/sepolicy_vndr" name="platform_device_mediatek_sepolicy_vndr"
+        remote="moto-common" revision="master" />
+</manifest>

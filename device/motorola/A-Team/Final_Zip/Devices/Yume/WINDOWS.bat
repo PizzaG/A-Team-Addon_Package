@@ -37,9 +37,9 @@ echo:
 echo PRESS ENTER TO CONTINUE
 set /p input=
 
-REM Set Slot
 call :ClearScreen  
 
+REM Set Slot
 fastboot set_active a  
 
 call :ClearScreen

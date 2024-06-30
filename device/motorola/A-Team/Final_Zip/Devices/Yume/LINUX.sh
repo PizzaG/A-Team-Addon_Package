@@ -1,18 +1,15 @@
 #!/bin/bash
 
-INSTALLER_VERSION="0.15"
-
+# Variables
+INSTALLER_VERSION="0.16"
 APP_NAME="A-Team Custom Rom Installer - Version: $INSTALLER_VERSION" 
 
 # Print App Name To Terminal
 echo -ne "\033]0;$APP_NAME\007"
 
-#
-echo ""
-echo "2019-Present A-Team Digital Solutions"
-#
-
 # Main Menu
+echo ""
+echo "  2019-Present A-Team Digital Solutions"
 echo "=========================================="
 echo "------------------------------------------"
 echo "-                                        -"
@@ -26,7 +23,7 @@ echo "========== A-Team Rom Flasher ============"
 echo "------------------------------------------"
 echo "-                                        -"
 echo "-           Built By: PizzaG             -"
-echo "-       Installer Version: 0.15          -"
+echo "-       Installer Version: $INSTALLER_VERSION          -"
 echo "-                                        -"
 echo "------------------------------------------"
 echo "-                                        -"
@@ -49,11 +46,13 @@ clear
 # Active Slot
 echo ""
 echo "========= Your Current Slot ========"
-echo ""
-echo ""
+echo "-                                  -"
 echo "------------------------------------"
 fastboot getvar current-slot
 echo "------------------------------------"
+echo "-                                  -"
+echo "------------------------------------"
+echo "===================================="
 echo ""
 echo ""
 echo "PRESS ENTER TO CONTINUE"
@@ -62,8 +61,8 @@ read
 clear
 
 # Recovery Menu
-echo ""
-echo "========= Recovery Selection ========"
+menu_recovery() {
+echo -e "\n========= Recovery Selection ========"
 echo "-------------------------------------"
 echo "1 => OrangeFox                      -"
 echo "2 => PitchBlack                     -"
@@ -74,48 +73,25 @@ echo "-------------------------------------"
 echo "Select Your Option & PRESS ENTER    -"
 echo "-------------------------------------"
 read recovery
-
-# Option 1- OFRP
-if [[ $recovery == 1 ]]
-then
-clear
-OFRP=TRUE
-RECOVERY=OrangeFox
-
-# Option 2 - PBRP
-elif [[ $recovery == 2 ]]
-then
-clear
-PBRP=TRUE
-RECOVERY=PitchBlack
-
-# Option 3 - SHRP
-elif [[ $recovery == 3 ]]
-then
-clear
-SHRP=TRUE
-RECOVERY=SkyHawk
-
-# Option 4 - TWRP
-elif [[ $recovery == 4 ]]
-then
-clear
-TWRP=TRUE
-RECOVERY=TWRP
-
-# Option 5 - Rom Recovery
-elif [[ $recovery == 5 ]]
-then
-clear
-ROM_RECOVERY=TRUE
-RECOVERY="Rom_Built_Recovery"
-
-fi
+case $recovery in
+    # Option 1- OFRP
+    1) clear; OFRP=TRUE; RECOVERY=OrangeFox;;
+    # Option 2 - PBRP
+    2) clear; PBRP=TRUE; RECOVERY=PitchBlack;;
+    # Option 3 - SHRP
+    3) clear; SHRP=TRUE; RECOVERY=SkyHawk;;
+    # Option 4 - TWRP
+    4) clear; TWRP=TRUE; RECOVERY=TWRP;;
+    # Option 5 - Rom Recovery
+    5) clear; ROM_RECOVERY=TRUE;;
+    *)echo "Invalid Option. Please Select 1, 2, 3, 4 or 5"; sleep 5; clear; menu_recovery;;
+esac
+}
 ############################
 
 # Root Menu
-echo ""
-echo "=========== Root Selection =========="
+menu_root() {
+echo -e "\n=========== Root Selection =========="
 echo "-------------------------------------"
 echo "1 => KernelSU                       -"
 echo "2 => Magisk                         -"
@@ -124,31 +100,21 @@ echo "-------------------------------------"
 echo "Select Your Option & PRESS ENTER    -"
 echo "-------------------------------------"
 read root
-
-# Option 1- KernelSU
-if [[ $root == 1 ]]
-then
-clear
-ROOT=KSU
-
-# Option 2 - Magisk
-elif [[ $root == 2 ]]
-then
-clear
-ROOT=MAGISK
-
-# Option 3 - No Root
-elif [[ $root == 3 ]]
-then
-clear
-ROOT=NONE
-
-fi
+case $root in
+    # Option 1- KernelSU
+    1) clear; ROOT=KSU;;
+    # Option 2 - Magisk
+    2) clear; ROOT=MAGISK;;
+    # Option 3 - No Root
+    3) clear; ROOT=NONE;;
+    *)echo "Invalid Option. Please Select 1, 2 or 3"; sleep 5; clear; menu_root;;
+esac
+}
 ############################
 
 # Encryption Menu
-echo ""
-echo "======== Encryption Selection ======="
+menu_encryption() {
+echo -e "\n======== Encryption Selection ======="
 echo "-------------------------------------"
 echo "1 => Keep Encryption                -"
 echo "2 => Disable Encryption             -"
@@ -156,35 +122,19 @@ echo "-------------------------------------"
 echo "Select Your Option & PRESS ENTER    -"
 echo "-------------------------------------"
 read crypto
-
-# Option 1 - Keep Encryption
-if [[ $crypto == 1 ]]
-then
-clear
-echo ""
-echo "Recovery Selected => $RECOVERY"
-echo ""  
-echo ""  
-echo "Encryption => Enabled"
-echo ""  
-echo "" 
-sleep 7
-
-# Option 2 - Disable Encryption
-elif [[ $crypto == 2 ]]
-then
-clear
-echo "" 
-echo "Recovery Selected => $RECOVERY"
-echo ""  
-echo ""   
-echo "Encryption => Disabled"
-echo ""  
-echo "" 
-CRYPTO=FALSE
-sleep 7
-fi
+case $crypto in
+    # Option 1 - Keep Encryption
+    1) clear; echo ""; echo "Recovery Selected => $RECOVERY"; echo ""; echo "Root Option Selected => $ROOT"; echo ""; echo "Encryption => Enabled"; echo ""; sleep 7;;
+    # Option 2 - Disable Encryption
+    2) clear; echo ""; echo "Recovery Selected => $RECOVERY"; echo ""; echo "Root Option Selected => $ROOT"; echo ""; echo "Encryption => Disabled"; echo ""; CRYPTO=FALSE; sleep 7;;
+    *)echo "Invalid Option. Please Select 1 or 2"; sleep 5; clear; menu_encryption;;
+esac
+}
 ############################
+
+menu_recovery
+menu_root
+menu_encryption
 
 # Flash Recovery Choice
 if [[ $OFRP == TRUE ]]
@@ -234,59 +184,28 @@ echo ""
 fi
 
 # Flash Dtbo
-echo "Flashing Dtbo..."
-echo ""
-fastboot flash dtbo dtbo.img
-echo ""
-echo "" 
+echo "Flashing Dtbo..."; echo ""; fastboot flash dtbo dtbo.img; echo ""; echo "" 
 
 # Flash Vbmeta
-echo "Flashing Vbmeta..."
-echo ""
-fastboot flash --disable-verity --disable-verification vbmeta vbmeta.img
-echo ""
-echo "" 
+echo "Flashing Vbmeta..."; echo ""; fastboot flash --disable-verity --disable-verification vbmeta vbmeta.img; echo ""; echo "" 
 
 # Flash Vbmeta_System
-echo "Flashing Vbmeta_System..."
-echo ""
-fastboot flash --disable-verity --disable-verification vbmeta_system vbmeta_system.img
-echo ""
-echo "" 
+echo "Flashing Vbmeta_System..."; echo ""; fastboot flash --disable-verity --disable-verification vbmeta_system vbmeta_system.img; echo ""; echo "" 
 
 # Flash Empty Super
-echo "Flashing Empty Super..."
-echo ""
-fastboot wipe-super super_empty.img
-echo ""
-echo "" 
+echo "Flashing Empty Super..."; echo ""; fastboot wipe-super super_empty.img; echo ""; echo "" 
 
 # Flash Vendor_Boot
-echo "Flashing Vendor_Boot..."
-echo ""
-fastboot flash vendor_boot vendor_boot.img
-echo ""
-echo "" 
+echo "Flashing Vendor_Boot..."; echo ""; fastboot flash vendor_boot vendor_boot.img; echo ""; echo "" 
 
 # Flash Boot
-echo "Flashing Boot..."
-echo ""
-fastboot flash boot boot.img
-echo ""
-echo "" 
+echo "Flashing Boot..."; echo ""; fastboot flash boot boot.img; echo ""; echo "" 
 
 # Format Data & Metadata
-echo "Formatting Data & Metadata..."
-sleep 7
-echo ""
-fastboot -w
-echo ""
-echo ""
+echo "Formatting Data & Metadata..."; sleep 7; echo ""; fastboot -w; echo ""; echo ""
 
 # Reboot Device
-fastboot reboot fastboot
-echo ""
-echo ""
+fastboot reboot fastboot; echo ""; echo ""
 
 # Flash Root Choice
 if [[ $ROOT == KSU ]]
@@ -318,25 +237,13 @@ echo ""
 fi
 
 # Flash Product
-echo "Flashing Product..."
-echo ""
-fastboot flash product_a product.img
-echo ""
-echo ""
+echo ""; echo ""; echo "Flashing Product..."; echo ""; fastboot flash product_a product.img; echo ""; echo ""
 
 # Flash System
-echo "Flashing System..."
-echo ""
-fastboot flash system_a system.img
-echo ""
-echo ""
+echo "Flashing System..."; echo ""; fastboot flash system_a system.img; echo ""; echo ""
 
 # Flash System_Ext
-echo "Flashing System_Ext..."
-echo ""
-fastboot flash system_ext_a system_ext.img
-echo ""
-echo ""
+echo "Flashing System_Ext..."; echo ""; fastboot flash system_ext_a system_ext.img; echo ""; echo ""
 
 # Flash Vendor Encryption Choice
 if [[ $CRYPTO == FALSE ]]
@@ -357,21 +264,11 @@ echo ""
 fi
 
 # Flash Vendor_Dlkm
-echo "Flashing Vendor_Dlkm..."
-echo ""
-fastboot flash vendor_dlkm_a vendor_dlkm.img
-echo ""
-echo ""
+echo "Flashing Vendor_Dlkm..."; echo ""; fastboot flash vendor_dlkm_a vendor_dlkm.img; echo ""; echo ""
 
 # Reboot Device
-fastboot reboot
-echo ""
-echo ""
+fastboot reboot; echo ""; echo ""; sleep 3;
 
-sleep 3
-
-echo ""
-echo ""
 echo "=== THANK YOU ===== PLEASE ENJOY ==="
 echo "------------------------------------"
 echo "======= PRESS ENTER TO EXIT ========"

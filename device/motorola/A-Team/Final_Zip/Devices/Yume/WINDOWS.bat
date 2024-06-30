@@ -1,27 +1,35 @@
 @echo off
 
-echo:
-echo: 2019-Present A-Team Digital Solutions
+REM Set Variables
+set "INSTALLER_VERSION=0.16"
+set "APP_NAME=A-Team Custom Rom Installer - Version: %INSTALLER_VERSION%"
 
+REM Print App Name To Terminal
+title %APP_NAME%
+
+REM Main Menu
+echo: 
+echo:  2019-Present A-Team Digital Solutions
+echo:
 echo ==========================================
 echo ------------------------------------------
-echo -                                        -  
-echo -                A-Team                  -  
-echo -           Digital Solutions            -  
-echo -                                        -  
-echo -          PROUDLY PRESENTS....          -  
-echo -                                        - 
+echo -                                        -
+echo -                A-Team                  -
+echo -           Digital Solutions            -
+echo -                                        -
+echo -          PROUDLY PRESENTS....          -
+echo -                                        -
 echo ------------------------------------------
 echo ========== A-Team Rom Flasher ============
 echo ------------------------------------------
-echo -                                        - 
-echo -           Built By: PizzaG             -  
-echo -        Installer Version: 0.15         - 
-echo -                                        -  
+echo -                                        -
+echo -           Built By: PizzaG             -
+echo -       Installer Version: %INSTALLER_VERSION%          -
+echo -                                        -
 echo ------------------------------------------
-echo -                                        -  
+echo -                                        -
 echo * Put Device In Fastboot/Bootloader Mode *
-echo -                                        -  
+echo -                                        -
 echo ------------------------------------------
 echo ==========================================
 echo:
@@ -29,26 +37,31 @@ echo:
 echo PRESS ENTER TO CONTINUE
 set /p input=
 
-cls
+REM Set Slot
+call :ClearScreen  
 
-fastboot set_active a
+fastboot set_active a  
 
-cls
+call :ClearScreen
 
+REM Show Active Slot
 echo:
 echo ========= Your Current Slot ========
-echo:
-echo:
+echo -                                  -
 echo ------------------------------------
 fastboot getvar current-slot
 echo ------------------------------------
+echo -                                  -
+echo ------------------------------------
+echo ====================================
 echo:
 echo:
 echo PRESS ENTER TO CONTINUE
 set /p input=
 
-cls
+call :ClearScreen
 
+REM Recovery Menu
 echo:
 echo ========= Recovery Selection ========
 echo -------------------------------------
@@ -62,62 +75,66 @@ echo Select Your Option ^& PRESS ENTER    -
 echo -------------------------------------
 set /p recovery=
 
-IF  %recovery% == 1  (
-  cls
-  set OFRP=TRUE
-  set RECOVERY=OrangeFox
+REM Process Recovery Choice
+if "%recovery%"=="1" (
+    call :ClearScreen
+    set "OFRP=TRUE"
+    set "RECOVERY=OrangeFox"
 )
 
-IF  %recovery% == 2  (
-  cls
-  set PBRP=TRUE
-  set RECOVERY=PitchBlack
+if "%recovery%"=="2" (
+    call :ClearScreen
+    set "PBRP=TRUE"
+    set "RECOVERY=PitchBlack"
 )
 
-IF  %recovery% == 3  (
-  cls
-  set SHRP=TRUE
-  set RECOVERY=SkyHawk
+if "%recovery%"=="3" (
+    call :ClearScreen
+    set "SHRP=TRUE"
+    set "RECOVERY=SkyHawk"
 )
 
-IF  %recovery% == 4  (
-  cls
-  set TWRP=TRUE
-  set RECOVERY=TWRP
+if "%recovery%"=="4" (
+    call :ClearScreen
+    set "TWRP=TRUE"
+    set "RECOVERY=TWRP"
 )
 
-IF  %recovery% == 5  (
-  cls
-  set ROM_RECOVERY=TRUE
-  set RECOVERY=Rom_Built_Recovery
+if "%recovery%"=="5" (
+    call :ClearScreen
+    set "ROM_RECOVERY=TRUE"
+    set "RECOVERY=Rom_Built_Recovery"
 )
 
+REM Root Menu
 echo:
 echo =========== Root Selection ==========
 echo -------------------------------------
-echo 1 ^=^> KernelSU                      -
-echo 2 ^=^> Magisk                     -
+echo 1 ^=^> KernelSU                       -
+echo 2 ^=^> Magisk                         -
 echo 3 ^=^> No Root                        -
 echo -------------------------------------
 echo Select Your Option ^& PRESS ENTER    -
 echo -------------------------------------
 set /p root=
 
-IF  %root% == 1  (
-  cls
-  set ROOT=KSU
+REM Process Root Choice
+if "%root%"=="1" (
+    call :ClearScreen
+    set "ROOT=KSU"
 )
 
-IF  %root% == 2  (
-  cls
-  set ROOT=MAGISK
+if "%root%"=="2" (
+    call :ClearScreen
+    set "ROOT=MAGISK"
 )
 
-IF  %root% == 3  (
-  cls
-  set ROOT=NONE
+if "%root%"=="3" (
+    call :ClearScreen
+    set "ROOT=NONE"
 )
 
+REM Encryption Menu
 echo:
 echo ======== Encryption Selection =======
 echo -------------------------------------
@@ -128,29 +145,36 @@ echo Select Your Option ^& PRESS ENTER    -
 echo -------------------------------------
 set /p crypto=
 
-IF  %crypto% == 1  (
-  cls
-  echo: 
-  echo Recovery Selected ^=^> %RECOVERY%
-  echo: 
-  echo: 
-  echo Encryption ^=^> Enabled
-  echo: 
-  echo: 
-  ping 127.0.0.1 -n 7 -w 1000 > nul
-) ELSE (
-  IF  %crypto% == 2  (
-    cls
-    echo: 
-    echo Recovery Selected ^=^> %RECOVERY%
-    echo: 
-    echo: 
-    echo Encryption ^=^> Disabled
-    echo: 
-    echo: 
-    set CRYPTO=FALSE
+REM Process Encryption choice
+if "%crypto%"=="1" (
+    call :ClearScreen
+    echo:
+    echo Recovery Selected => %RECOVERY%
+    echo:
+    echo:
+    echo Root Option Selected => %ROOT%
+    echo:
+    echo:
+    echo Encryption => Enabled
+    echo:
+    echo:
     ping 127.0.0.1 -n 7 -w 1000 > nul
-  )
+)
+
+if "%crypto%"=="2" (
+    call :ClearScreen
+    echo:
+    echo Recovery Selected => %RECOVERY%
+    echo:
+    echo:
+    echo Root Option Selected => %ROOT%
+    echo:
+    echo:
+    echo Encryption => Disabled
+    echo:
+    echo:
+    set "CRYPTO=FALSE"
+    ping 127.0.0.1 -n 7 -w 1000 > nul
 )
 
 IF  %OFRP% == TRUE  (
@@ -193,52 +217,29 @@ IF  %ROM_RECOVERY% == TRUE  (
   echo: 
 )
 
-echo Flashing Dtbo...
-echo: 
-fastboot flash dtbo dtbo.img
-echo: 
-echo: 
+REM Flash Dtbo
+echo Flashing Dtbo... && echo: && fastboot flash dtbo dtbo.img && echo: && echo:
 
-echo Flashing Vbmeta...
-echo: 
-fastboot flash --disable-verity --disable-verification vbmeta vbmeta.img
-echo: 
-echo: 
+REM Flash Vbmeta
+echo Flashing Vbmeta... && echo: && fastboot flash --disable-verity --disable-verification vbmeta vbmeta.img && echo: && echo:
 
-echo Flashing Vbmeta_System...
-echo: 
-fastboot flash --disable-verity --disable-verification vbmeta_system vbmeta_system.img
-echo: 
-echo: 
+REM Flash Vbmeta_System
+echo Flashing Vbmeta_System... && echo: && fastboot flash --disable-verity --disable-verification vbmeta_system vbmeta_system.img && echo: && echo:
 
-echo Flashing Empty Super...
-echo: 
-fastboot wipe-super super_empty.img
-echo: 
-echo: 
+REM Flash Empty Super
+echo Flashing Empty Super... && echo: && fastboot wipe-super super_empty.img && echo: && echo:
 
-echo Flashing Vendor_Boot...
-echo: 
-fastboot flash vendor_boot vendor_boot.img
-echo: 
-echo: 
+REM Flash Vendor_Boot
+echo Flashing Vendor_Boot... && echo: && fastboot flash vendor_boot vendor_boot.img && echo: && echo:
 
-echo Flashing Boot...
-echo: 
-fastboot flash boot boot.img
-echo: 
-echo: 
+REM Flash Boot
+echo Flashing Boot... && echo: && fastboot flash boot boot.img && echo: && echo:
 
-echo Formatting Data And Metadata...
-ping 127.0.0.1 -n 7 -w 1000 > nul
-echo: 
-fastboot -w
-echo: 
-echo:
+REM Format Data & Metadata
+echo Formatting Data ^& Metadata... && ping 127.0.0.1 -n 7 -w 1000 > nul && echo: && fastboot -w && echo: && echo:
 
-fastboot reboot fastboot
-echo: 
-echo:
+REM Reboot Device To FastbootD
+fastboot reboot fastboot && echo: && echo:
 
 IF  %ROOT% == KSU  (
   echo Flashing KernelSU Root...
@@ -264,54 +265,43 @@ IF  %ROOT% == NONE  (
   echo: 
 )
 
-echo Flashing Product...
-echo: 
-fastboot flash product_a product.img
-echo: 
-echo: 
+REM Flash Product
+echo: && echo: && echo Flashing Product... && echo: && fastboot flash product_a product.img && echo: && echo:
 
-echo Flashing System...
-echo: 
-fastboot flash system_a system.img
-echo: 
-echo: 
+REM Flash System
+echo Flashing System... && echo: && fastboot flash system_a system.img && echo: && echo:
 
-echo Flashing System_Ext...
-echo: 
-fastboot flash system_ext_a system_ext.img
-echo: 
-echo: 
+REM Flash System_Ext
+echo Flashing System_Ext... && echo: && fastboot flash system_ext_a system_ext.img && echo: && echo:
 
-IF  %CRYPTO% == FALSE  (
-  echo Flashing Encryption Disabled Vendor...
-  echo: 
-  fastboot flash vendor_a NoEncrypt-vendor.img 
-  echo: 
-  echo:
-) ELSE (
-    echo Flashing Encryption Enabled Vendor...
-    echo: 
-	fastboot flash vendor_a vendor.img
-    echo: 
+REM Flash Vendor Encryption Choice
+if "%CRYPTO%"=="FALSE" (
+    echo Flashing Encryption Disabled Vendor...
     echo:
-  )	
+    fastboot flash vendor_a NoEncrypt-vendor.img
+    echo:
+    echo:
+) else (
+    echo Flashing Encryption Enabled Vendor...
+    echo:
+    fastboot flash vendor_a vendor.img
+    echo:
+    echo:
 )
 
-echo Flashing Vendor_Dlkm...
-echo: 
-fastboot flash vendor_dlkm_a vendor_dlkm.img
-echo: 
-echo: 
+REM Flash Vendor_Dlkm
+echo Flashing Vendor_Dlkm... && echo: && fastboot flash vendor_dlkm_a vendor_dlkm.img && echo: && echo:
 
-fastboot reboot
-echo: 
-echo: 
+REM Reboot Device
+fastboot reboot && echo: && echo: && ping 127.0.0.1 -n 3 -w 1000 > nul && echo: && echo:
 
-ping 127.0.0.1 -n 3 -w 1000 > nul
-
-echo: 
-echo:
 echo === THANK YOU ===== PLEASE ENJOY ===
 echo ------------------------------------
 echo ======= PRESS ENTER TO EXIT ========
 set /p input=
+
+:ClearScreen
+REM This function clears the screen
+echo.
+for /L %%i in (1,1,50) do echo.
+goto :eof

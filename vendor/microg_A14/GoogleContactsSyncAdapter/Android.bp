@@ -1,0 +1,8 @@
+android_app_import {
+    name: "GoogleContactsSyncAdapter",
+    apk: "GoogleContactsSyncAdapter.apk",
+    presigned: true,
+    preprocessed: true,
+    product_specific: true,
+    optional_uses_libs: ["org.apache.http.legacy"],
+}

@@ -1,0 +1,29 @@
+prebuilt_etc {
+    name: "default-permissions-com.android.vending.xml",
+    src: "default-permissions-com.android.vending.xml",
+    product_specific: true,
+    relative_install_path: "default-permissions",
+}
+
+prebuilt_etc {
+    name: "privapp-permissions-com.android.vending.xml",
+    src: "privapp-permissions-com.android.vending.xml",
+    product_specific: true,
+    relative_install_path: "permissions",
+}
+
+android_app_import {
+    name: "PhoneskyG",
+    apk: "Phonesky.apk",
+    presigned: true,
+    privileged: true,
+    product_specific: true,
+    optional_uses_libs: [
+        "androidx.window.extensions",
+        "androidx.window.sidecar",
+    ],
+    required: [
+        "default-permissions-com.android.vending.xml",
+        "privapp-permissions-com.android.vending.xml",
+    ],
+}

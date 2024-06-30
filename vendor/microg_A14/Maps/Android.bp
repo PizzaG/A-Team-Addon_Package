@@ -1,0 +1,14 @@
+dex_import {
+	name: "com.google.android.maps",
+	owner: "gms",
+	jars: ["com.google.android.maps.jar"],
+	product_specific: true,
+	required: ["com.google.android.maps.xml"],
+}
+
+prebuilt_etc {
+    name: "com.google.android.maps.xml",
+    src: "com.google.android.maps.xml",
+    product_specific: true,
+    relative_install_path: "permissions",
+}

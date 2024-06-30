@@ -1,0 +1,17 @@
+prebuilt_etc {
+    name: "sysconfig_com.aurora.adroid.xml",
+    src: "sysconfig_com.aurora.adroid.xml",
+    product_specific: true,
+    relative_install_path: "sysconfig",
+}
+
+android_app_import {
+    name: "AuroraDroid",
+    apk: "AuroraDroid.apk",
+    presigned: true,
+    preprocessed: true,
+    skip_preprocessed_apk_checks: true,
+    privileged: true,
+    product_specific: true,
+    required: ["sysconfig_com.aurora.adroid.xml"],
+}

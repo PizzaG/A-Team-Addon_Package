@@ -245,24 +245,18 @@ IF  %ROOT% == KSU  (
   echo Flashing KernelSU Root...
   echo: 
   fastboot flash boot KSU.img
-  echo: 
-  echo: 
 )
 
 IF  %ROOT% == MAGISK  (
   echo Flashing Magisk Root...
   echo: 
   fastboot flash boot Magisk.img
-  echo: 
-  echo: 
 )
 
 IF  %ROOT% == NONE  (
   echo Not Rooting Device...
   echo: 
   fastboot flash boot boot.img
-  echo: 
-  echo: 
 )
 
 REM Flash Product

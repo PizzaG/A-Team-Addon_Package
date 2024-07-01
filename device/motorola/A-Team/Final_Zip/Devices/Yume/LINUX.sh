@@ -214,8 +214,6 @@ then
 echo "Flashing KernelSU Root..."
 echo ""
 fastboot flash boot KSU.img
-echo ""
-echo ""
 
 elif [[ $ROOT == MAGISK ]]
 then
@@ -223,8 +221,6 @@ then
 echo "Flashing Magisk Root..."
 echo ""
 fastboot flash boot Magisk.img
-echo ""
-echo ""
 
 elif [[ $ROOT == NONE ]]
 then
@@ -232,8 +228,6 @@ then
 echo "Not Rooting Device..."
 echo ""
 fastboot flash boot boot.img
-echo ""
-echo ""
 fi
 
 # Flash Product

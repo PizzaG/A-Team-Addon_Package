@@ -2,12 +2,11 @@
 # Copyright 2019-Present A-Team Digital Solutions
 #
 
-A_TEAM_PATH := device/motorola/A-Team
+############
+## A-Team ##
+##################################################################
 
-# A-Team Custom NameSpaces
-PRODUCT_SOONG_NAMESPACES += \
-    [A-Team_Mods] \
-    [A-Team_Apps]
+A_TEAM_PATH := device/motorola/A-Team
 
 # BootAnimation Resolution
 TARGET_BOOT_ANIMATION_RES := 1080
@@ -15,23 +14,43 @@ TARGET_BOOT_ANIMATION_RES := 1080
 # Device Maintainer
 DEVICE_MAINTAINER := PizzaG
 
-# Magisk Patching
+# A-Team Custom APN
+#ifeq ($(CUSTOM_APN), Custom)
+PRODUCT_SOONG_NAMESPACES += \
+    [A-Team_APN] 
+
+# A-Team Custom Apps & Mods
+PRODUCT_SOONG_NAMESPACES += \
+    [A-Team_Mods] \
+    [A-Team_Apps]
+
+# A-Team Magisk Patching
 ifeq ($(A_TEAM_MAGISK), true)
 PRODUCT_SOONG_NAMESPACES += \
     [A-Team_Magisk]
 endif
+##################################################################
 
-ifeq ($(MICROG), true)
+
+###########################
+## A-Team Gapps Variants ##
+##################################################################
+
+# A-Team Gapps
+ifeq ($(ROM_BUILD_TYPE), GAPPS)
 PRODUCT_SOONG_NAMESPACES += \
-     [$A-Team_MICRO-G]
-$(call inherit-product, vendor/microg/products/gms.mk)
+     [$A-Team_GAPPS]
+#$(call inherit-product, vendor/gapps/products/gms.mk)
+#$(call inherit-product, vendor/gms/products/gms.mk)
 endif
 
-# Copy APN
-#ifeq ($(CUSTOM_APN), true)
-#PRODUCT_COPY_FILES += \
-#    $(A_TEAM_PATH)/Custom_APN/apns-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
-#endif
+# A-Team Micro-G
+ifeq ($(ROM_BUILD_TYPE), MICROG)
+PRODUCT_SOONG_NAMESPACES += \
+     [$A-Team_MICRO-G]
+#$(call inherit-product, vendor/microg/products/gms.mk)
+endif
+##################################################################
 
 
 ####################
@@ -74,3 +93,16 @@ PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
     persist.adb.notify=0 \
     persist.sys.disable_rescue=true \
     ro.a-team.rom_version=$(VERSION)
+##################################################################
+
+
+#############################
+## Disabled / Old / Unused ##
+##################################################################
+
+# A-Team Custom APN
+#ifeq ($(CUSTOM_APN), true)
+#PRODUCT_COPY_FILES += \
+#    $(A_TEAM_PATH)/Custom_APN/apns-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
+#endif
+##################################################################

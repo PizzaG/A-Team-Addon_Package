@@ -39,7 +39,7 @@ endif
 # A-Team Gapps
 ifeq ($(ROM_BUILD_TYPE), GAPPS)
 PRODUCT_SOONG_NAMESPACES += \
-     [$A-Team_GAPPS]
+     [A-Team_GAPPS]
 #$(call inherit-product, vendor/gapps/products/gms.mk)
 #$(call inherit-product, vendor/gms/products/gms.mk)
 endif
@@ -47,7 +47,7 @@ endif
 # A-Team Micro-G
 ifeq ($(ROM_BUILD_TYPE), MICROG)
 PRODUCT_SOONG_NAMESPACES += \
-     [$A-Team_MICRO-G]
+     [A-Team_MICRO-G]
 #$(call inherit-product, vendor/microg/products/gms.mk)
 endif
 ##################################################################

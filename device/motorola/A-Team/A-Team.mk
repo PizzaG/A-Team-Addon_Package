@@ -22,7 +22,8 @@ PRODUCT_SOONG_NAMESPACES += \
 # A-Team Custom Apps & Mods
 PRODUCT_SOONG_NAMESPACES += \
     [A-Team_Mods] \
-    [A-Team_Apps]
+    [A-Team_Apps] \
+    [A-Team_KSU]
 
 # A-Team Magisk Patching
 ifeq ($(A_TEAM_MAGISK), true)

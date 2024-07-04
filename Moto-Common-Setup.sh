@@ -27,8 +27,8 @@ echo ""
 echo "A-Team Moto-Common Setup Script"
 echo ""
 echo ""
-echo "Setup Version: 0.13"
-echo "Setup Update: 6-28-2024"
+echo "Setup Version: 0.15"
+echo "Setup Update: 7-4-2024"
 echo ""
 echo ""
 echo "Current Date: $date"
@@ -301,7 +301,7 @@ else
 fi
 
 # Check If Rom .mk File Exists, Copy If So & Then Run Symlink Script
-if [ -f $A_TEAM_PACKAGE_LOCATION/device/$DT_MANUFACTURER/targets/rom/$ROM_BUILD_NAME.mk ]; then
+if [ -f $A_TEAM_PACKAGE_LOCATION/ROM_MK_FILES/$A_TEAM_MK_NAME ]; then
    echo "Checking If Rom .mk File Exists..."
    echo ""
    sleep 3
@@ -313,7 +313,7 @@ if [ -f $A_TEAM_PACKAGE_LOCATION/device/$DT_MANUFACTURER/targets/rom/$ROM_BUILD_
    echo ""
    echo "1/1..."
    echo ""
-   cp -r $A_TEAM_PACKAGE_LOCATION/device/$DT_MANUFACTURER/targets/rom/$ROM_BUILD_NAME.mk device/$DT_MANUFACTURER/targets/rom
+   cp -r $A_TEAM_PACKAGE_LOCATION/ROM_MK_FILES/$A_TEAM_MK_NAME device/$DT_MANUFACTURER/targets/rom/$ROM_BUILD_NAME
    sleep 3
    ####################
    # Update Moto-Common Device Symlinks

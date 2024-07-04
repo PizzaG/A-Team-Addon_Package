@@ -32,3 +32,6 @@ add yume/genevn setup, add dirty kernel patch, update some variables to use ROM_
 
 —Release Updates v0.14—
 add better proccedure to deal with moving correct rom mk file over...
+
+—Release Updates v0.15—
+fix rom mk copy procedure...

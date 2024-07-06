@@ -24,3 +24,6 @@ should handle roms that use manifests or manifests/snippets for parsing manifest
 
 —Release Updates v0.12 - 2-20-2024—
 updated against newest moto-common fragments manifests
+
+—Release Updates v0.13 - 7-6-2024—
+yume sync fixed in fragments file

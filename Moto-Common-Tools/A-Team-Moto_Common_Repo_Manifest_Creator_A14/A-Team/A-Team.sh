@@ -39,7 +39,7 @@ clear
 echo ""
 echo "=========   Menu Selection   ========"
 echo "-------------------------------------"
-echo "       Tool Version: 0.12           -"
+echo "       Tool Version: 0.13           -"
 echo "   Tool Frontend Author: PizzaG     -"
 echo "  PY Script & Manifest: Electimon   -"
 echo "      Release Group: A-Team         -"

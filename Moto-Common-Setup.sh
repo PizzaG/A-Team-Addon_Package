@@ -7,7 +7,7 @@
 #
 
 APP_NAME="A-Team Moto-Common Setup Script" 
-SETUP_VERSION="0.17"
+SETUP_VERSION="0.18"
 SETUP_DATE="7-12-2024"
 
 # Date
@@ -334,7 +334,7 @@ if [ -f $A_TEAM_PACKAGE_LOCATION/ROM_MK_FILES/$A_TEAM_MK_NAME ]; then
    echo ""
    echo "1/1..."
    echo ""
-   cp -r $A_TEAM_PACKAGE_LOCATION/ROM_MK_FILES/$A_TEAM_MK_NAME device/$DT_MANUFACTURER/targets/rom/$ROM_BUILD_NAME
+   cp -r $A_TEAM_PACKAGE_LOCATION/ROM_MK_FILES/$A_TEAM_MK_NAME device/$DT_MANUFACTURER/targets/rom/${ROM_BUILD_NAME}.mk
    sleep 3
    ####################
    # Update Moto-Common Device Symlinks

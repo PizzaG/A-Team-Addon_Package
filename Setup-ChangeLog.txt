@@ -41,3 +41,6 @@ rework system/vendor version mismatch patch procedure(hopefully more robust now)
 
 —Release Updates v0.17—
 add alternative Build.java patch for system/vendor mismatch...
+
+—Release Updates v0.18—
+fix copying rom mk files...

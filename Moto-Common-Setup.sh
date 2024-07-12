@@ -7,119 +7,15 @@
 #
 
 APP_NAME="A-Team Moto-Common Setup Script" 
-SETUP_VERSION="0.16"
-SETUP_DATE="7-6-2024"
+SETUP_VERSION="0.17"
+SETUP_DATE="7-12-2024"
 
 # Date
 date=$(date -u +%-m/%d/%Y)
 
 # Print App Name To Terminal
 echo -ne "\033]0;$APP_NAME\007"
-
-version_mismatch() {
-    # Define the file path
-    FILE="frameworks/base/core/java/android/os/Build.java"
-    BACKUP_FILE="${FILE}.orig"
-
-    # Create a backup of the original file
-    cp "$FILE" "$BACKUP_FILE"
-
-# Define the original code snippet
-    OLD_SNIPPET=$(cat << 'EOF'
-    public static boolean isBuildConsistent() {
-        // Don't care on eng builds.  Incremental build may trigger false negative.
-        /*if (IS_ENG) return true;
-
-        if (IS_TREBLE_ENABLED) {
-            int result = VintfObject.verifyBuildAtBoot();
-
-            if (result != 0) {
-                Slog.e(TAG, "Vendor interface is incompatible, error="
-                        + String.valueOf(result));
-            }
-
-            return result == 0;
-            return true;
-        }
-
-        final String system = SystemProperties.get("ro.system.build.fingerprint");
-        final String vendor = SystemProperties.get("ro.vendor.build.fingerprint");
-        final String bootimage = SystemProperties.get("ro.bootimage.build.fingerprint");
-        final String requiredBootloader = SystemProperties.get("ro.build.expect.bootloader");
-        final String currentBootloader = SystemProperties.get("ro.bootloader");
-        final String requiredRadio = SystemProperties.get("ro.build.expect.baseband");
-        final String currentRadio = joinListOrElse(
-                TelephonyProperties.baseband_version(), "");
-
-        if (TextUtils.isEmpty(system)) {
-            Slog.e(TAG, "Required ro.system.build.fingerprint is empty!");
-            return false;
-        }
-
-        if (!TextUtils.isEmpty(vendor)) {
-            if (!Objects.equals(system, vendor)) {
-                Slog.e(TAG, "Mismatched fingerprints; system reported " + system
-                        + " but vendor reported " + vendor);
-                return false;
-            }
-        } */
-
-        /* TODO: Figure out issue with checks failing
-        if (!TextUtils.isEmpty(bootimage)) {
-            if (!Objects.equals(system, bootimage)) {
-                Slog.e(TAG, "Mismatched fingerprints; system reported " + system
-                        + " but bootimage reported " + bootimage);
-                return false;
-            }
-        }
-
-        if (!TextUtils.isEmpty(requiredBootloader)) {
-            if (!Objects.equals(currentBootloader, requiredBootloader)) {
-                Slog.e(TAG, "Mismatched bootloader version: build requires " + requiredBootloader
-                        + " but runtime reports " + currentBootloader);
-                return false;
-            }
-        }
-
-        if (!TextUtils.isEmpty(requiredRadio)) {
-            if (!Objects.equals(currentRadio, requiredRadio)) {
-                Slog.e(TAG, "Mismatched radio version: build requires " + requiredRadio
-                        + " but runtime reports " + currentRadio);
-                return false;
-            }
-        }
-        */
-
-        return true;
-    }
-EOF
-    )
-
-    # Define the new code snippet
-    NEW_SNIPPET=$(cat << 'EOF'
-    public static boolean isBuildConsistent() {
-        return true;
-    }
-EOF
-    )
-
-    # Replace the old snippet with the new snippet in the file
-    sed -i "/public static boolean isBuildConsistent() {/,/return true;/c\\
-$NEW_SNIPPET
-" "$FILE"
-
-    # Perform sanity check
-    if grep -q "public static boolean isBuildConsistent() {
-        return true;
-    }" "$FILE"; then
-        echo "Replacement Complete. Backup of Original File Created As ${BACKUP_FILE}."
-    else
-        echo "Replacement Failed. Restoring Original File."
-        cp "$BACKUP_FILE" "$FILE"
-    fi
-}
     
-
 # Copyright & Current Date Stamp
 echo ""
 echo "Copyright 2019-Present A-Team Digital Solutions"
@@ -392,33 +288,37 @@ if [ -f frameworks/base/core/java/android/os/Build.java.orig ]; then
    echo "A-Team Patch 1 Already Applied, Skipping..."
    echo ""
    sleep 3
-elif [ -f frameworks/base/core/java/android/os/Build.java.rej ]; then
-   echo "A-Team Patch 1 Already Applied, Skipping..."
-   echo ""
-   sleep 3
+#elif [ -f frameworks/base/core/java/android/os/Build.java.rej ]; then
+#   echo "A-Team Patch 1 Already Applied, Skipping..."
+#   echo ""
+#   sleep 3
 else
    echo "Rom Needs Internal System/Vendor Version Mismatch Error Patch, Patching..."
    echo ""
    echo "1/1..."
    echo ""
-   #patch -u -b frameworks/base/core/java/android/os/Build.java -i device/$DT_MANUFACTURER/A-Team/Build.java.patch
-   version_mismatch
+   patch -u -b frameworks/base/core/java/android/os/Build.java -i device/$DT_MANUFACTURER/A-Team/Build.java.patch
+
    sleep 3
    echo ""
    # Sanity Check
-   #if [ -f frameworks/base/core/java/android/os/Build.java.rej ]; then
-   #   echo "Patch Failed, Please Read README-VersionMismatchFix.txt..."
-   #   echo ""
-   #   echo "PRESS ENTER TO CONTINUE AFTER FIXING"
-   #   read
-   #fi
-   #if [ -f frameworks/base/core/java/android/os/Build.java.rej ]; then
-   #   echo "Patch Failed, Please Read README-VersionMismatchFix.txt..."
-   #   echo ""
-   #   echo "PRESS ENTER TO EXIT"
-   #   read
-   #   exit
-   #fi
+   if [ -f frameworks/base/core/java/android/os/Build.java.rej ]; then
+      echo "Patch Failed, Trying Alternate Patch File..."
+      echo ""
+      rm -rf frameworks/base/core/java/android/os/Build.java
+      rm -rf frameworks/base/core/java/android/os/Build.java.rej
+      mv frameworks/base/core/java/android/os/Build.java.orig frameworks/base/core/java/android/os/Build.java
+      patch -u -b frameworks/base/core/java/android/os/Build.java -i device/$DT_MANUFACTURER/A-Team/Build.java-alt.patch
+      echo ""
+   fi
+   if [ -f frameworks/base/core/java/android/os/Build.java.rej ]; then
+      echo "FAILED, Please Read --> README-VersionMismatchFix.txt..."
+      echo ""
+      gnome-terminal -- bash -c "cat device/motorola/A-Team/README-VersionMismatchFix.txt; exec bash"
+      echo ""
+      echo "PRESS ENTER TO CONTINUE"
+      read
+   fi
 fi
 
 # Check If Rom .mk File Exists, Copy If So & Then Run Symlink Script

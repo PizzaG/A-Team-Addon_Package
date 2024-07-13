@@ -29,6 +29,21 @@ MAINLINE_INCLUDE_VIRT_MODULE := false
 TARGET_GBOARD_KEY_HEIGHT := 1.2
 $(call inherit-product-if-exists, vendor/pixel-additional/config.mk)
 
+# Build Signing
+TARGET_BUILD_FULLY_SIGN := true
+
+include vendor/parasite/signatures/BoardConfigSign.mk
+
+BOARD_AVB_VENDOR_BOOT_ROLLBACK_INDEX := 0
+BOARD_AVB_VENDOR_BOOT_ROLLBACK_INDEX_LOCATION := 2
+TARGET_AVB_KEY_PATH := $(PARASITE_AVB_KEY_PATH)
+# Differs what bit (e.g. 2048) you selected for key generation
+TARGET_AVB_ALGORITHM := SHA256_RSA2048
+BOARD_AVB_KEY_PATH := $(TARGET_AVB_KEY_PATH)
+BOARD_AVB_ALGORITHM :=  $(TARGET_AVB_ALGORITHM)
+BOARD_AVB_VENDOR_BOOT_KEY_PATH := $(TARGET_AVB_KEY_PATH)
+BOARD_AVB_VENDOR_BOOT_ALGORITHM := $(TARGET_AVB_ALGORITHM)
+
 # Gapps Selection
 # TARGET_BUILD_PACKAGE options:
 # 1 - vanilla (default)

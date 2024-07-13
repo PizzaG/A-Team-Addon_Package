@@ -7,8 +7,8 @@
 #
 
 APP_NAME="A-Team Moto-Common Setup Script" 
-SETUP_VERSION="0.18"
-SETUP_DATE="7-12-2024"
+SETUP_VERSION="0.19"
+SETUP_DATE="7-13-2024"
 
 # Date
 date=$(date -u +%-m/%d/%Y)
@@ -602,6 +602,14 @@ echo ""
 cp -r $A_TEAM_PACKAGE_LOCATION/device/motorola/milanf/rro_overlays device/motorola/milanf
 sleep 3
 
+# Patch BoardConfig.mk
+echo "Patching Milanf BoardConfig.mk In Device Tree..."
+echo ""
+echo "1/1..."
+echo ""
+sed -i 's/^BOARD_MOT_DYNAMIC_PARTITIONS_SIZE :=.*/BOARD_MOT_DYNAMIC_PARTITIONS_SIZE := 9827254272/' device/motorola/milanf/BoardConfig.mk
+sleep 3
+
 # Patch device.mk
 echo "Patching Milanf device.mk In Device Tree..."
 echo ""
@@ -656,6 +664,14 @@ echo ""
 cp -r $A_TEAM_PACKAGE_LOCATION/device/motorola/osaka/rro_overlays device/motorola/osaka
 sleep 3
 
+# Patch BoardConfig.mk
+echo "Patching Osaka BoardConfig.mk In Device Tree..."
+echo ""
+echo "1/1..."
+echo ""
+sed -i 's/^BOARD_MOT_DYNAMIC_PARTITIONS_SIZE :=.*/BOARD_MOT_DYNAMIC_PARTITIONS_SIZE := 13954449408/' device/motorola/osaka/BoardConfig.mk
+sleep 3
+
 # Patch device.mk
 echo "Patching Osaka device.mk In Device Tree..."
 echo ""
@@ -708,6 +724,14 @@ echo ""
 echo "1/1..."
 echo ""
 cp -r $A_TEAM_PACKAGE_LOCATION/device/motorola/yume/rro_overlays device/motorola/yume
+sleep 3
+
+# Patch BoardConfig.mk
+echo "Patching Yume BoardConfig.mk In Device Tree..."
+echo ""
+echo "1/1..."
+echo ""
+sed -i 's/^BOARD_MOT_DYNAMIC_PARTITIONS_SIZE :=.*/BOARD_MOT_DYNAMIC_PARTITIONS_SIZE := 6782189568/' device/motorola/yume/BoardConfig.mk
 sleep 3
 
 # Patch device.mk

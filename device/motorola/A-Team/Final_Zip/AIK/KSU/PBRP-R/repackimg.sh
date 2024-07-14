@@ -408,5 +408,6 @@ if [ "$origsize" -a -f split_img/*-origsize ]; then
 fi;
 
 echo "Done!";
+echo " ";
 exit 0;
 

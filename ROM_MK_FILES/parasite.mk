@@ -77,4 +77,4 @@ endif
 # Required Scripts
 $(warning This ROM requires replace_camera_sepolicy.sh to be ran...)
 
-PRODUCT_NAME := aosp$(DEVICE)
+PRODUCT_NAME := aosp_$(DEVICE)

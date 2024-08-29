@@ -7,8 +7,8 @@
 #
 
 APP_NAME="A-Team Moto-Common Setup Script" 
-SETUP_VERSION="0.19"
-SETUP_DATE="7-13-2024"
+SETUP_VERSION="0.20"
+SETUP_DATE="8-29-2024"
 
 # Date
 date=$(date -u +%-m/%d/%Y)
@@ -309,6 +309,15 @@ else
       rm -rf frameworks/base/core/java/android/os/Build.java.rej
       mv frameworks/base/core/java/android/os/Build.java.orig frameworks/base/core/java/android/os/Build.java
       patch -u -b frameworks/base/core/java/android/os/Build.java -i device/$DT_MANUFACTURER/A-Team/Build.java-alt.patch
+      echo ""
+   fi
+   if [ -f frameworks/base/core/java/android/os/Build.java.rej ]; then
+      echo "Patch Failed, Trying Alternate 1 Patch File..."
+      echo ""
+      rm -rf frameworks/base/core/java/android/os/Build.java
+      rm -rf frameworks/base/core/java/android/os/Build.java.rej
+      mv frameworks/base/core/java/android/os/Build.java.orig frameworks/base/core/java/android/os/Build.java
+      patch -u -b frameworks/base/core/java/android/os/Build.java -i device/$DT_MANUFACTURER/A-Team/Build.java-alt-1.patch
       echo ""
    fi
    if [ -f frameworks/base/core/java/android/os/Build.java.rej ]; then

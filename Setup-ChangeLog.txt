@@ -50,3 +50,6 @@ add milanf BoardConfig.mk patch to use full partition size instead of half, add 
 
 —Release Updates v0.20—
 add another patch alternative...
+
+—Release Updates v0.21—
+add another patch alternative...
